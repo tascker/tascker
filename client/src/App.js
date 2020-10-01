@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Redirect, Route } from "react-router-dom";
-import Signup from "./components/Singup";
+import { Route } from "react-router-dom";
+import Signup from "./components/Signup";
 
 class App extends Component {
   state = {

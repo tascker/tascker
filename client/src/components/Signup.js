@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { signup } from "../services/auth";
 import DepartmentSelect from "./DepartmentSelect";
 
-export default class Singup extends Component {
+export default class Signup extends Component {
   state = {
     username: "",
     email: "",
@@ -44,7 +44,7 @@ export default class Singup extends Component {
       <>
         <h2>Signup</h2>
 
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -52,6 +52,15 @@ export default class Singup extends Component {
             value={this.state.username}
             onChange={this.handleChange}
             id="username"
+          />
+
+          <label htmlFor="password">Email</label>
+          <input
+            type="text"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+            id="email"
           />
 
           <label htmlFor="password">Password</label>
