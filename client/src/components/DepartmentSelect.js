@@ -19,7 +19,7 @@ export default class DepartmentSelect extends Component {
 
     // this.setState({
     //   [name]: value
-    //   })
+    // })
   };
 
   render() {
