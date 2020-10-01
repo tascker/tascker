@@ -83,12 +83,7 @@ app.use("/", index);
 const tasks = require("./routes/tasks");
 app.use("/api/tasks", tasks);
 
-<<<<<<< HEAD
-const users = require("./routes/auth")
+const auth = require("./routes/auth")
 app.use("/api/auth", auth)
-=======
-const auth = require("./routes/auth");
-app.use("/api/auth", auth);
->>>>>>> master
 
 module.exports = app;
