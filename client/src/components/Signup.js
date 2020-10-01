@@ -9,11 +9,18 @@ export default class Signup extends Component {
     password: "",
     department: "",
     message: "",
+    options: [
+      { name: "Business Operations", label: "Business Operations" },
+      { name: "HR", label: "HR" },
+      { name: "Marketing & Sales", label: "Marketing & Sales" },
+      { name: "Finance", label: "Finance" },
+      { name: "IT", label: "IT" },
+      { name: "Software", label: "Software" },
+    ],
   };
 
   handleChange = (event) => {
     const { name, value } = event.target;
-
     this.setState({
       [name]: value,
     });
@@ -39,6 +46,34 @@ export default class Signup extends Component {
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    const { username, email, password, department } = this.state;
+    signup(username, email, password, department)
+      .then(data => {
+        if (data.message) {
+          this.setState({
+            message: data.message,
+            username: "",
+            email: "",
+            password: "",
+            department: "",
+          })
+        } else {
+          //now we need to put user in the user key of the state of App.js
+          this.props.setUser(data)
+
+          //redirect to /projects
+          this.props.history.push('/tasklist');
+        }
+      })
+  }
+  setQuery = query => {
+    this.setState({
+      department: query
+    });
+  };
+
   render() {
     return (
       <>
@@ -54,7 +89,7 @@ export default class Signup extends Component {
             id="username"
           />
 
-          <label htmlFor="password">Email</label>
+          <label htmlFor="email">email</label>
           <input
             type="text"
             name="email"
@@ -73,7 +108,9 @@ export default class Signup extends Component {
           />
 
           <label htmlFor="department">Department</label>
-          <DepartmentSelect />
+          <DepartmentSelect options={this.state.options}
+            setQuery={this.setQuery}
+            department={this.state.department} />
           <button type="submit">Signup</button>
         </form>
       </>
