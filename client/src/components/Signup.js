@@ -9,11 +9,18 @@ export default class Signup extends Component {
     password: "",
     department: "",
     message: "",
+    options: [
+      { name: "Business Operations", label: "Business Operations" },
+      { name: "HR", label: "HR" },
+      { name: "Marketing & Sales", label: "Marketing & Sales" },
+      { name: "Finance", label: "Finance" },
+      { name: "IT", label: "IT" },
+      { name: "Software", label: "Software" },
+    ],
   };
 
   handleChange = (event) => {
     const { name, value } = event.target;
-
     this.setState({
       [name]: value,
     });
@@ -57,10 +64,15 @@ export default class Signup extends Component {
           this.props.setUser(data)
 
           //redirect to /projects
-          this.props.history.push('/projects');
+          this.props.history.push('/tasklist');
         }
       })
   }
+  setQuery = query => {
+    this.setState({
+      department: query
+    });
+  };
 
   render() {
     return (
@@ -96,7 +108,9 @@ export default class Signup extends Component {
           />
 
           <label htmlFor="department">Department</label>
-          <DepartmentSelect />
+          <DepartmentSelect options={this.state.options}
+            setQuery={this.setQuery}
+            department={this.state.department} />
           <button type="submit">Signup</button>
         </form>
       </>
