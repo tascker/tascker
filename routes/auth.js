@@ -5,7 +5,8 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 
 router.post("/signup", (req, res, next) => {
-  const { username, password } = req.body;
+  console.log("in auth.js in root", req.body)
+  const { username, email, password, department } = req.body;
 
   if (password.length < 8) {
     return res
@@ -26,9 +27,13 @@ router.post("/signup", (req, res, next) => {
 
       User.create({
         username: username,
+        email: email,
         password: hash,
+        department: department
+
       })
         .then((dbUser) => {
+          console.log("success", username, email)
           req.login(dbUser, (err) => {
             if (err) {
               return res

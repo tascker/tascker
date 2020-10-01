@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { signup } from "../services/auth";
 import DepartmentSelect from "./DepartmentSelect";
 
-export default class Singup extends Component {
+export default class Signup extends Component {
   state = {
     username: "",
     email: "",
@@ -39,12 +39,35 @@ export default class Singup extends Component {
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    const { username, email, password, department } = this.state;
+    signup(username, email, password, department)
+      .then(data => {
+        if (data.message) {
+          this.setState({
+            message: data.message,
+            username: "",
+            email: "",
+            password: "",
+            department: "",
+          })
+        } else {
+          //now we need to put user in the user key of the state of App.js
+          this.props.setUser(data)
+
+          //redirect to /projects
+          this.props.history.push('/projects');
+        }
+      })
+  }
+
   render() {
     return (
       <>
         <h2>Signup</h2>
 
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -52,6 +75,15 @@ export default class Singup extends Component {
             value={this.state.username}
             onChange={this.handleChange}
             id="username"
+          />
+
+          <label htmlFor="email">email</label>
+          <input
+            type="text"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+            id="email"
           />
 
           <label htmlFor="password">Password</label>
