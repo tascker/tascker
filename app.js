@@ -57,4 +57,7 @@ app.use("/", index);
 const tasks = require("./routes/tasks");
 app.use("/api/tasks", tasks);
 
+const users = require("./routes/auth")
+app.use("/api/auth", auth)
+
 module.exports = app;

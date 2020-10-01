@@ -14,6 +14,10 @@ const projectSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    collaborators: [{
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }],
     // subTaks: {
     //   type: Schema.Types.ObjectId,
     //   ref: "subTask",
