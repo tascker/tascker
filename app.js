@@ -9,6 +9,11 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 
+const session = require("express-session");
+const passport = require("passport");
+
+require("./configs/passport.js");
+
 mongoose
   .connect("mongodb://localhost/tascker", { useNewUrlParser: true })
   .then((x) => {
@@ -20,12 +25,33 @@ mongoose
     console.error("Error connecting to mongo", err);
   });
 
+const MongoStore = require("connect-mongo")(session);
+
+const app = express();
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    saveUninitialized: false,
+    resave: true,
+    store: new MongoStore({
+      // when the session cookie has an expiration date
+      // connect-mongo will use it, otherwise it will create a new
+      // one and use ttl - time to live - in that case one day
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 * 1000,
+    }),
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 const app_name = require("./package.json").name;
 const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
 );
-
-const app = express();
 
 // Middleware Setup
 app.use(logger("dev"));
@@ -57,7 +83,12 @@ app.use("/", index);
 const tasks = require("./routes/tasks");
 app.use("/api/tasks", tasks);
 
+<<<<<<< HEAD
 const users = require("./routes/auth")
 app.use("/api/auth", auth)
+=======
+const auth = require("./routes/auth");
+app.use("/api/auth", auth);
+>>>>>>> master
 
 module.exports = app;
