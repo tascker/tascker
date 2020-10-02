@@ -83,7 +83,10 @@ app.use("/", index);
 const tasks = require("./routes/tasks");
 app.use("/api/tasks", tasks);
 
-const auth = require("./routes/auth")
-app.use("/api/auth", auth)
+const user = require("./routes/user");
+app.use("/api/user", user);
+
+const auth = require("./routes/auth");
+app.use("/api/auth", auth);
 
 module.exports = app;
