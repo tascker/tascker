@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { v4 as uuidv4 } from "uuid";
 import CollabSelect from "./CollabSelect";
+import axios from "axios";
 
 export default class CreateTask extends Component {
   state = {
@@ -10,6 +10,28 @@ export default class CreateTask extends Component {
     collaborators: {},
   };
 
+  submitHandler = (event) => {
+    event.preventDefault();
+
+    const { title, notes, deadline, collaborators } = this.state;
+
+    axios
+      .post("/api/tasks", {
+        title,
+        notes,
+        deadline,
+        collaborators,
+      })
+      .then(() => {
+        this.setState({
+          title: "",
+          notes: "",
+          deadline: "",
+          collaborators: {},
+        });
+      });
+  };
+
   changeHandler = (event) => {
     const target = event.target;
     // console.log("event target", event.target);
@@ -17,29 +39,6 @@ export default class CreateTask extends Component {
     this.setState({
       [target.name]: target.value,
     });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const { title, notes, deadline, collaborators } = this.state;
-
-    const newTask = {
-      title,
-      notes,
-      deadline,
-      collaborators,
-      id: uuidv4(),
-    };
-
-    console.log(newTask);
-
-    this.setState((state) => ({
-      title: "",
-      notes: "",
-      deadline: "",
-      collaborators: {},
-    }));
   };
 
   render() {

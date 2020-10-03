@@ -27,7 +27,7 @@ export default class CollabSelect extends React.Component {
     // console.log("event", event.target.options.selectedIndex);
 
     const indexNumber = event.target.options.selectedIndex;
-    const selectEvent = event.target.options;
+    // const selectEvent = event.target.options;
 
     console.log(this.state.usersList[indexNumber]._id);
 

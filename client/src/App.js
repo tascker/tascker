@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Navbar from "./components/Navbar/Navbar";
+import Tasks from "./components/Tasks/Tasks";
 import CreateTask from "./components/CreateTask/CreateTask";
+import TaskDetails from "./components/TaskDetails/TaskDetails";
 
 class App extends Component {
   state = {
@@ -19,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>tascker</h1>
+        <Navbar user={this.state.user} setUser={this.setUser} />
         <Switch>
           <Route
             exact
@@ -31,7 +34,23 @@ class App extends Component {
             path="/login"
             render={(props) => <Login setUser={this.setUser} {...props} />}
           />
-          <CreateTask to="createtask" />
+          <Route
+            exact
+            path="/"
+            render={(props) => <Tasks setUser={this.setUser} {...props} />}
+          />
+          <Route
+            exact
+            path="/create-task"
+            render={(props) => <CreateTask setUser={this.setUser} {...props} />}
+          />
+          <Route
+            exact
+            path="/:id"
+            render={(props) => (
+              <TaskDetails setUser={this.setUser} {...props} />
+            )}
+          />
         </Switch>
       </div>
     );

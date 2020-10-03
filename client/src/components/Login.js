@@ -55,9 +55,9 @@ export default class Login extends Component {
             onChange={this.handleChange}
             id="password"
           />
-          {/* {this.state.message && (
-                        <alert variant='danger'>{this.state.message}</alert>
-                    )} */}
+          {this.state.message && (
+            <alert variant="danger">{this.state.message}</alert>
+          )}
           <button type="submit">Login</button>
         </form>
       </>
