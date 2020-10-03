@@ -59,10 +59,7 @@ export default class Signup extends Component {
           department: "",
         });
       } else {
-        //now we need to put user in the user key of the state of App.js
         this.props.setUser(data);
-
-        //redirect to /projects
         this.props.history.push("/");
       }
     });

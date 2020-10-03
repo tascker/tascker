@@ -26,11 +26,8 @@ export default class Login extends Component {
           password: "",
         });
       } else {
-        //now we need to put user in the user key of the state of App.js
         this.props.setUser(data);
-
-        //redirect to /projects
-        this.props.history.push("/projects");
+        this.props.history.push("/");
       }
     });
   };

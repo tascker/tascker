@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const projectSchema = new Schema(
+const TaskSchema = new Schema(
   {
     title: String,
     notes: String,
@@ -14,10 +14,12 @@ const projectSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    collaborators: [{
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    }],
+    collaborators: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     // subTaks: {
     //   type: Schema.Types.ObjectId,
     //   ref: "subTask",
@@ -26,5 +28,5 @@ const projectSchema = new Schema(
   { timestamps: true }
 );
 
-const project = mongoose.model("Task", projectSchema);
+const project = mongoose.model("Task", TaskSchema);
 module.exports = project;
