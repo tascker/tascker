@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import TaskList from "../TaskList/TaskList";
+import Search from "../Search/Search";
 
 export default class Tasks extends Component {
   state = {
@@ -16,7 +17,7 @@ export default class Tasks extends Component {
     axios
       .get("/api/tasks")
       .then((response) => {
-        console.log("response", response);
+        // console.log("response", response);
         this.setState({
           tasks: response.data,
         });
@@ -30,6 +31,7 @@ export default class Tasks extends Component {
     return (
       <div>
         <h2>My Tasks</h2>
+        <Search tasks={this.state.tasks} />
         {/* this renders all tasks, it should be divided */}
         <TaskList tasks={this.state.tasks} />
         <h2>My collab tasks</h2>

@@ -12,7 +12,7 @@ export default function Navbar(props) {
   return (
     <nav>
       {props.user && <span>Welcome {props.user.username} 👋🏼 </span>}
-      <Link to="/" onClick={() => logoutHandler(props)}>
+      <Link to="/login" onClick={() => logoutHandler(props)}>
         Logout
       </Link>
     </nav>
