@@ -46,7 +46,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/:id"
+            path="/tasks/:id"
             render={(props) => (
               <TaskDetails setUser={this.setUser} {...props} />
             )}

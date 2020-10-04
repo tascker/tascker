@@ -41,6 +41,12 @@ export default class CreateTask extends Component {
     });
   };
 
+  // setQuery = (query) => {
+  //   this.setState({
+  //     department: query,
+  //   });
+  // };
+
   render() {
     return (
       <>

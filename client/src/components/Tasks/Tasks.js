@@ -16,7 +16,7 @@ export default class Tasks extends Component {
     axios
       .get("/api/tasks")
       .then((response) => {
-        console.log("response", response);
+        // console.log("response", response);
         this.setState({
           tasks: response.data,
         });

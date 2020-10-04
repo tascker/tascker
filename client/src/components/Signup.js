@@ -64,6 +64,7 @@ export default class Signup extends Component {
       }
     });
   };
+
   setQuery = (query) => {
     this.setState({
       department: query,
