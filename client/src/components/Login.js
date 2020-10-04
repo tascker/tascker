@@ -27,7 +27,7 @@ export default class Login extends Component {
         });
       } else {
         this.props.setUser(data);
-        this.props.history.push("/");
+        this.props.history.push("/dashboard");
       }
     });
   };

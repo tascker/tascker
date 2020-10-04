@@ -41,7 +41,7 @@ export default class Signup extends Component {
         });
       } else {
         this.props.setUser(data);
-        this.props.history.push("/");
+        this.props.history.push("/dashboard");
       }
     });
   };
@@ -60,7 +60,7 @@ export default class Signup extends Component {
         });
       } else {
         this.props.setUser(data);
-        this.props.history.push("/");
+        this.props.history.push("/dashboard");
       }
     });
   };

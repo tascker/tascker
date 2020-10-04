@@ -11,6 +11,11 @@ export default class Seacrh extends Component {
 
   searchHandler = (event) => {
     console.log(event.target.value);
+    const searchInput = event.target.value;
+
+    this.setState({
+      search: searchInput,
+    });
   };
 
   render() {

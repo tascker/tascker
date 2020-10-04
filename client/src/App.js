@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
+import Home from "./components/Home/Home";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar/Navbar";
@@ -26,6 +27,11 @@ class App extends Component {
         <Switch>
           <Route
             exact
+            path="/"
+            render={(props) => <Home setUser={this.setUser} {...props} />}
+          />
+          <Route
+            exact
             path="/signup"
             render={(props) => <Signup setUser={this.setUser} {...props} />}
           />
@@ -36,7 +42,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/"
+            path="/dashboard"
             render={(props) => <Tasks setUser={this.setUser} {...props} />}
           />
           <Route
