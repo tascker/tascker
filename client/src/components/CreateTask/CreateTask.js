@@ -7,30 +7,32 @@ export default class CreateTask extends Component {
     title: "",
     notes: "",
     deadline: "",
-    collaborators: [],
+    collaborators: []
   };
 
   submitHandler = (event) => {
     event.preventDefault();
-    console.log("user", this.props.user)
+    //console.log("user", this.props.user)
+    console.log("collab", this.state.collaborators)
 
-    const { title, notes, deadline, collaborators } = this.state;
+    const { title, notes, deadline } = this.state;
     const owner = this.props.user;
+
 
     axios
       .post("/api/tasks", {
-        title,
-        notes,
-        deadline,
-        collaborators,
-        owner
+        title: title,
+        notes: notes,
+        deadline: deadline,
+        collaborators: this.state.collaborators,
+        owner: owner
       })
       .then(() => {
         this.setState({
           title: "",
           notes: "",
           deadline: "",
-          collaborators: {},
+          collaborators: []
         });
       });
   };
@@ -44,11 +46,13 @@ export default class CreateTask extends Component {
     });
   };
 
-  // setQuery = (query) => {
-  //   this.setState({
-  //     department: query,
-  //   });
-  // };
+  setQuery = query => {
+    this.setState({
+      collaborators: query
+    });
+    console.log("in create collab", this.state.collaborators)
+  };
+
 
   render() {
     return (
@@ -83,9 +87,9 @@ export default class CreateTask extends Component {
 
           <label htmlFor="collaborators">Collaborators</label>
           <CollabSelect
-            options={this.state.options}
-            // setQuery={this.setQuery}
-            collaborators={this.state.collaborators}
+            //options={this.state.options}
+            setQuery={this.setQuery}
+          //collaborators={this.state.collaborators}
           />
           <button type="submit">Create</button>
         </form>

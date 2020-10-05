@@ -18,11 +18,16 @@ export default class CollabTask extends Component {
         axios
             .get("/api/tasks")
             .then((response) => {
-                console.log("in Task response", response);
-                const filtered = response.data.filter(res => res.collaborators === userId._id)
-                //   console.log("filetered data", filtered)
+
+                const taskList = response.data
+                let collabTasksArray = []
+                for (let i = 0; i < taskList.length; i++) {
+                    if (taskList[i].collaborators.includes(userId._id))
+                        collabTasksArray.push(taskList[i])
+                }
+
                 this.setState({
-                    tasks: filtered,
+                    tasks: collabTasksArray,
                 });
             })
             .catch((error) => {

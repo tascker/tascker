@@ -6,11 +6,9 @@ export default class CollabSelect extends React.Component {
     usersList: [],
   };
 
-  collaborators = [];
 
   getUsersFromDB = () => {
     axios.get("/api/user").then((response) => {
-      //console.log("response", response.data[0].username);
       this.setState({
         usersList: response.data,
       });
@@ -24,32 +22,29 @@ export default class CollabSelect extends React.Component {
   }
 
   selectHandler = (event) => {
-    // console.log("event", event.target.options.selectedIndex);
-
-    const indexNumber = event.target.options.selectedIndex;
-    // const selectEvent = event.target.options;
-
-    console.log(this.state.usersList[indexNumber]._id);
-
-    this.setState({
-      collaborators: this.collaborators.push(
-        this.state.usersList[indexNumber]._id
-      ),
-    });
+    var options = event.target.options;
+    var value = [];
+    for (var i = 0, l = options.length; i < l; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    // console.log("selected", value)
+    this.props.setQuery(value)
   };
 
   render() {
     return (
       <>
         <select
-          name="collaboratos"
+          name="collaborators"
           id="collaborators"
-          multiple
+          multiple={true}
           key={this.state.usersList._id}
           onChange={this.selectHandler}
         >
           {this.state.usersList.map((user) => {
-            return <option value={user.username}>{user.username}</option>;
+            return <option value={user._id}>{user.username}</option>;
           })}
         </select>
       </>

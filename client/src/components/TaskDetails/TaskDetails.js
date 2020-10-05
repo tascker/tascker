@@ -44,7 +44,7 @@ export default class TaskDetails extends Component {
         <p>{this.state.notes}</p>
         <p>{this.state.deadline}</p>
         {/* collaborators are not coming in when creating a task */}
-        {/* <p>{this.state.collaboratos}</p> */}
+        {/* <p>{this.state.collaborators}</p> */}
         <p>{this.state.status}</p>
       </div>
     );
