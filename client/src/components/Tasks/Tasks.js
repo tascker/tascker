@@ -6,8 +6,10 @@ import Search from "../Search/Search";
 import CollabTask from "./CollabTask"
 import EditTask from "../EditTask/EditTask"
 
+
 export default class Tasks extends Component {
   state = {
+    search: "",
     tasks: [],
     editForm: false,
     title: "",
@@ -21,6 +23,7 @@ export default class Tasks extends Component {
   }
 
   getTasksFromDB = () => {
+
     const userId = this.props.user
     // console.log("userId", userId)
     axios
@@ -28,6 +31,7 @@ export default class Tasks extends Component {
       .then((response) => {
         //  console.log("in Task response", response);
         const filtered = response.data.filter(res => res.owner === userId._id && (res.collaborators.length === 0))
+
         this.setState({
           tasks: filtered,
         });
@@ -36,6 +40,7 @@ export default class Tasks extends Component {
         console.log(error);
       });
   };
+
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -74,14 +79,31 @@ export default class Tasks extends Component {
     }))
   }
 
+  submitHandler = (event) => {
+    event.preventDefault();
+  };
+
+  searchHandler = (event) => {
+    console.log("search", event.target.value);
+    const searchInput = event.target.value;
+
+    this.setState({
+      search: searchInput,
+    });
+  };
+
+
   render() {
     return (
       <div>
+        <Search
+          search={this.state.search}
+          submitHandler={this.submitHandler}
+          searchHandler={this.searchHandler}
+        />
         <h2>My Tasks</h2>
-        <Search tasks={this.state.tasks} />
-        {/* this renders all tasks, it should be divided */}
-        <TaskList tasks={this.state.tasks} />
-        <h2>My collaborated tasks</h2>
+        <TaskList tasks={this.state.tasks} search={this.state.search} />
+        <h2>My collab tasks</h2>
         <CollabTask user={this.state.user} {...this.props} />
         {/* here list only tasks with collaborators */}
         <Link to="/create-task">Add a new Task</Link>
