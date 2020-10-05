@@ -41,12 +41,13 @@ router.delete("/:id", (req, res) => {
 
 // ADD NEW TASK
 router.post("/", (req, res) => {
-  const { title, notes, deadline, status } = req.body;
+  const { title, notes, deadline, status, owner } = req.body;
   Task.create({
     title,
     notes,
     deadline,
     status,
+    owner
   })
     .then((task) => {
       res.status(201).json(task);

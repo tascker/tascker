@@ -43,12 +43,16 @@ class App extends Component {
           <Route
             exact
             path="/dashboard"
-            render={(props) => <Tasks setUser={this.setUser} {...props} />}
+            render={props => {
+              if (this.state.user) {
+                return <Tasks user={this.state.user} {...props} />
+              }
+            }}
           />
           <Route
             exact
             path="/create-task"
-            render={(props) => <CreateTask setUser={this.setUser} {...props} />}
+            render={(props) => <CreateTask user={this.state.user} {...props} />}
           />
           <Route
             exact

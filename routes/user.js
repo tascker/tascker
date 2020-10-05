@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
     });
 });
 
+
 // GET SPECIFIC USER
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
