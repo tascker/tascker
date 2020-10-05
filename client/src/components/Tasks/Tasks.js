@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import TaskList from "../TaskList/TaskList";
 import Search from "../Search/Search";
+import CollabTask from "./CollabTask"
 
 export default class Tasks extends Component {
   state = {
@@ -14,12 +15,16 @@ export default class Tasks extends Component {
   }
 
   getTasksFromDB = () => {
+    const userId = this.props.user
+    console.log("userId", userId)
     axios
       .get("/api/tasks")
       .then((response) => {
-        // console.log("response", response);
+        console.log("in Task response", response);
+        const filtered = response.data.filter(res => res.owner === userId._id)
+        //   console.log("filetered data", filtered)
         this.setState({
-          tasks: response.data,
+          tasks: filtered,
         });
       })
       .catch((error) => {
@@ -35,6 +40,7 @@ export default class Tasks extends Component {
         {/* this renders all tasks, it should be divided */}
         <TaskList tasks={this.state.tasks} />
         <h2>My collab tasks</h2>
+        <CollabTask user={this.state.user} {...this.props} />
         {/* here list only tasks with collaborators */}
         <Link to="/create-task">Add a new Task</Link>
       </div>

@@ -7,13 +7,15 @@ export default class CreateTask extends Component {
     title: "",
     notes: "",
     deadline: "",
-    collaborators: {},
+    collaborators: [],
   };
 
   submitHandler = (event) => {
     event.preventDefault();
+    console.log("user", this.props.user)
 
     const { title, notes, deadline, collaborators } = this.state;
+    const owner = this.props.user;
 
     axios
       .post("/api/tasks", {
@@ -21,6 +23,7 @@ export default class CreateTask extends Component {
         notes,
         deadline,
         collaborators,
+        owner
       })
       .then(() => {
         this.setState({
