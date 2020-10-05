@@ -12,31 +12,36 @@ export default class CollabTask extends Component {
     this.getTasksFromDB();
   }
 
-  getTasksFromDB = () => {
-    const userId = this.props.user;
-    console.log("userId", userId);
-    axios
-      .get("/api/tasks")
-      .then((response) => {
-        console.log("in Task response", response);
-        const filtered = response.data.filter(
-          (res) => res.collaborators === userId._id
-        );
-        //   console.log("filetered data", filtered)
-        this.setState({
-          tasks: filtered,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
-  render() {
-    return (
-      <div>
-        <TaskList tasks={this.state.tasks} />
-      </div>
+    getTasksFromDB = () => {
+        const userId = this.props.user
+        console.log("userId", userId)
+        axios
+            .get("/api/tasks")
+            .then((response) => {
+
+                const taskList = response.data
+                let collabTasksArray = []
+                for (let i = 0; i < taskList.length; i++) {
+                    if (taskList[i].collaborators.includes(userId._id))
+                        collabTasksArray.push(taskList[i])
+                }
+
+                this.setState({
+                    tasks: collabTasksArray,
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    render() {
+        return (
+            <div>
+                <TaskList tasks={this.state.tasks} />
+            </div>
+
     );
   }
 }
