@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import EditTask from "../EditTask/EditTask";
 
 export default class TaskDetails extends Component {
   state = {
@@ -10,6 +11,7 @@ export default class TaskDetails extends Component {
     deadline: "",
     collaborators: [],
     status: "",
+    editForm: false
   };
 
   componentDidMount() {
@@ -36,16 +38,68 @@ export default class TaskDetails extends Component {
       });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    const id = this.props.match.params.id;
+    axios.put(`api/tasks/${id}`, {
+      task: this.state.data,
+      title: this.state.title,
+      notes: this.state.notes,
+      deadline: this.state.deadline,
+      //  collaborators: this.state.collaborators,
+      status: this.state.status
+    })
+      .then(response => {
+        this.setState({
+          task: response.data,
+          title: response.data.title,
+          notes: response.data.notes,
+          deadline: response.data.deadline,
+          //   collaborators: response.data.collaborators,
+          status: response.data.status,
+        })
+      })
+      .catch(error => {
+        if (error.response.status === 404) {
+          this.setState({
+            error: 'Not Found'
+          })
+        }
+      });
+  }
+
+  toggleEditForm = () => {
+    this.setState((state) => ({
+      editForm: !state.editForm
+    }))
+  }
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    })
+  }
+
   render() {
-    console.log("is thi working?", this.state.collaborators)
+    if (this.state.error) return <div>{this.state.error}</div>
+    if (!this.state.task) return <p>Loading....</p>
     return (
       <div>
         <h2>{this.state.title}</h2>
         <p>{this.state.notes}</p>
         <p>{this.state.deadline}</p>
-        <p>Collabs for this task:</p>
+        <p>Collaborators for this task:</p>
         <ul> {this.state.collaborators.map((collab) => <li> {collab.username} </li>)}</ul>
         <p>{this.state.status}</p>
+
+        <button onClick={this.toggleEditForm}>Edit Task</button>
+        {this.state.editForm && (
+          <EditTask
+            {...this.state}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit} />
+        )}
       </div >
     );
   }
