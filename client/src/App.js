@@ -8,7 +8,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Tasks from "./components/Tasks/Tasks";
 import TaskList from "./components/TaskList/TaskList";
-// import CreateTask from "./components/CreateTask/CreateTask";
+import CreateTask from "./components/CreateTask/CreateTask";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
 
 class App extends Component {
@@ -80,11 +80,11 @@ class App extends Component {
           }}
         />
 
-        {/* <Route
+        <Route
           exact
           path="/create-task"
           render={(props) => <CreateTask user={this.state.user} {...props} />}
-        /> */}
+        />
       </div>
     );
   }
