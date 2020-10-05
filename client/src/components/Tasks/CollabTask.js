@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import TaskList from "../TaskList/TaskList";
 
 export default class CollabTask extends Component {
-    state = {
-        tasks: [],
-    };
+  state = {
+    tasks: [],
+  };
 
-    componentDidMount() {
-        this.getTasksFromDB();
-    }
+  componentDidMount() {
+    this.getTasksFromDB();
+  }
+
 
     getTasksFromDB = () => {
         const userId = this.props.user
@@ -40,7 +41,7 @@ export default class CollabTask extends Component {
             <div>
                 <TaskList tasks={this.state.tasks} />
             </div>
-        );
-    }
-}
 
+    );
+  }
+}

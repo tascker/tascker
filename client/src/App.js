@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import Home from "./components/Home/Home";
+// import Auth from "./components/Auth.js";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Tasks from "./components/Tasks/Tasks";
-import CreateTask from "./components/CreateTask/CreateTask";
+import TaskList from "./components/TaskList/TaskList";
+// import CreateTask from "./components/CreateTask/CreateTask";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
 
 class App extends Component {
@@ -23,45 +25,66 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar user={this.state.user} setUser={this.setUser} />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => <Home setUser={this.setUser} {...props} />}
-          />
-          <Route
-            exact
-            path="/signup"
-            render={(props) => <Signup setUser={this.setUser} {...props} />}
-          />
-          <Route
-            exact
-            path="/login"
-            render={(props) => <Login setUser={this.setUser} {...props} />}
-          />
-          <Route
-            exact
-            path="/dashboard"
-            render={props => {
-              if (this.state.user) {
-                return <Tasks user={this.state.user} {...props} />
-              }
-            }}
-          />
-          <Route
-            exact
-            path="/create-task"
-            render={(props) => <CreateTask user={this.state.user} {...props} />}
-          />
-          <Route
-            exact
-            path="/tasks/:id"
-            render={(props) => (
-              <TaskDetails setUser={this.setUser} {...props} />
-            )}
-          />
-        </Switch>
+        <Navbar user={this.state.user} clearUser={this.setUser} />
+        <Route exact path="/" component={Home} />
+
+        <Route
+          exact
+          path="/signup"
+          render={(props) => <Signup setUser={this.setUser} {...props} />}
+        />
+        <Route
+          exact
+          path="/login"
+          render={(props) => <Login setUser={this.setUser} {...props} />}
+        />
+
+        {/* <Route
+          exact
+          path="/signup"
+          render={(props) => {
+            if (this.state.user) {
+              return <TaskList {...props} user={this.state.user} />;
+            } else {
+              return <Redirect to="/" />;
+            }
+          }}
+        />
+        <Route
+          exact
+          path="/login"
+          render={(props) => <Login setUser={this.setUser} {...props} />}
+        /> */}
+
+        <Route
+          exact
+          path="/dashboard"
+          render={(props) => {
+            if (this.state.user) {
+              return <Tasks {...props} user={this.state.user} />;
+            } else {
+              return <Redirect to="/" />;
+            }
+          }}
+        />
+
+        <Route
+          exact
+          path="/tasks/:id"
+          render={(props) => {
+            if (this.state.user) {
+              return <TaskDetails {...props} user={this.state.user} />;
+            } else {
+              return <Redirect to="/" />;
+            }
+          }}
+        />
+
+        {/* <Route
+          exact
+          path="/create-task"
+          render={(props) => <CreateTask user={this.state.user} {...props} />}
+        /> */}
       </div>
     );
   }
