@@ -8,21 +8,20 @@ export default class TaskDetails extends Component {
     title: "",
     notes: "",
     deadline: "",
-    collaborators: {},
+    collaborators: [],
     status: "",
   };
 
   componentDidMount() {
     this.getTaskFromDB();
   }
-
+  //collabList = []
   getTaskFromDB = () => {
     const id = this.props.match.params.id;
 
     axios
       .get(`/api/tasks/${id}`)
       .then((response) => {
-        console.log("details data.response", response);
         this.setState({
           task: response.data,
           title: response.data.title,
@@ -30,7 +29,7 @@ export default class TaskDetails extends Component {
           deadline: response.data.deadline,
           collaborators: response.data.collaborators,
           status: response.data.status,
-        });
+        })
       })
       .catch((error) => {
         console.log(error.response);
@@ -38,15 +37,16 @@ export default class TaskDetails extends Component {
   };
 
   render() {
+    console.log("is thi working?", this.state.collaborators)
     return (
       <div>
         <h2>{this.state.title}</h2>
         <p>{this.state.notes}</p>
         <p>{this.state.deadline}</p>
-        {/* collaborators are not coming in when creating a task */}
-        {/* <p>{this.state.collaborators}</p> */}
+        <p>Collabs for this task:</p>
+        <ul> {this.state.collaborators.map((collab) => <li> {collab.username} </li>)}</ul>
         <p>{this.state.status}</p>
-      </div>
+      </div >
     );
   }
 }
