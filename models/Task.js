@@ -20,10 +20,6 @@ const TaskSchema = new Schema(
         ref: "User",
       },
     ],
-    // subTaks: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "subTask",
-    // },
   },
   { timestamps: true }
 );
