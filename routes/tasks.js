@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
 // GET SPECIFIC TASK
 router.get("/:id", (req, res) => {
   Task.findById(req.params.id)
+    .populate("collaborators")
     .then((task) => {
       if (!task) {
         res.status(404).json(task);
