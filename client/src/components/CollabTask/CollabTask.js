@@ -14,7 +14,7 @@ export default class CollabTask extends Component {
 
   getTasksFromDB = () => {
     const userId = this.props.user;
-    console.log("userId", userId);
+    // console.log("userId", userId);
     axios
       .get("/api/tasks")
       .then((response) => {

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import TaskList from "../TaskList/TaskList";
 import Search from "../Search/Search";
 import CollabTask from "../CollabTask/CollabTask";
-import EditTask from "../EditTask/EditTask";
 
 export default class Tasks extends Component {
   state = {
@@ -43,44 +42,44 @@ export default class Tasks extends Component {
       });
   };
 
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
+  // handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const id = this.props.match.params.id;
-    axios
-      .put(`/api/tasks/${id}`, {
-        title: this.state.title,
-        notes: this.state.notes,
-        deadline: this.state.deadline,
-        status: this.state.status,
-      })
-      .then((response) => {
-        this.setState({
-          project: response.data,
-          title: response.data.title,
-          notes: response.data.notes,
-          deadline: response.data.deadline,
-          status: this.state.status,
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const id = this.props.match.params.id;
+  //   axios
+  //     .put(`/api/tasks/${id}`, {
+  //       title: this.state.title,
+  //       notes: this.state.notes,
+  //       deadline: this.state.deadline,
+  //       status: this.state.status,
+  //     })
+  //     .then((response) => {
+  //       this.setState({
+  //         project: response.data,
+  //         title: response.data.title,
+  //         notes: response.data.notes,
+  //         deadline: response.data.deadline,
+  //         status: this.state.status,
 
-          editForm: false,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  //         editForm: false,
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
-  toggleEditForm = () => {
-    this.setState((state) => ({
-      editForm: !state.editForm,
-    }));
-  };
+  // toggleEditForm = () => {
+  //   this.setState((state) => ({
+  //     editForm: !state.editForm,
+  //   }));
+  // };
 
   submitHandler = (event) => {
     event.preventDefault();
