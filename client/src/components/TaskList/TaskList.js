@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Tasklist(props) {
-  const searched = props.tasks.filter((task) => {
-    if (props.search) {
-      return task.title.toLowerCase().includes(props.search.toLowerCase());
-    } else return task;
-  });
-
-  //console.log("searched", searched);
+  const filtered =
+    props.tasks.filter(task => {
+      if (props.search) {
+        return task.title.toLowerCase().includes(props.search.toLowerCase());
+      }
+      else return task
+    })
 
   return (
     <div>
-      {searched.map((task) => {
+      {filtered.map((task) => {
         return (
           <div key={task._id}>
             <h3>
