@@ -14,7 +14,7 @@ export default class Tasks extends Component {
     notes: "",
     deadline: "",
     status: "",
-    pinned: false
+    pinned: false,
   };
 
   componentDidMount() {
@@ -103,9 +103,17 @@ export default class Tasks extends Component {
           searchHandler={this.searchHandler}
         />
         <h2>My Tasks</h2>
-        <TaskList tasks={this.state.tasks} search={this.state.search} />
+        <TaskList
+          tasks={this.state.tasks}
+          search={this.state.search}
+          {...this.props}
+        />
         <h2>My collab tasks</h2>
-        <CollabTask user={this.state.user} search={this.state.search} {...this.props} />
+        <CollabTask
+          user={this.state.user}
+          search={this.state.search}
+          {...this.props}
+        />
         <Link to="/create-task">Add a new Task</Link>
       </div>
     );
