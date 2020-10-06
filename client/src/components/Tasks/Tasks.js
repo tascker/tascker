@@ -6,7 +6,6 @@ import Search from "../Search/Search";
 import CollabTask from "./CollabTask"
 import EditTask from "../EditTask/EditTask"
 
-
 export default class Tasks extends Component {
   state = {
     search: "",
@@ -17,6 +16,7 @@ export default class Tasks extends Component {
     deadline: "",
     status: "",
     pinned: false
+
   };
 
   componentDidMount() {
@@ -24,14 +24,16 @@ export default class Tasks extends Component {
   }
 
   getTasksFromDB = () => {
+    const userId = this.props.user;
 
-    const userId = this.props.user
     // console.log("userId", userId)
     axios
       .get("/api/tasks")
       .then((response) => {
         //  console.log("in Task response", response);
-        const filtered = response.data.filter(res => res.owner === userId._id && (res.collaborators.length === 0))
+        const filtered = response.data.filter(
+          (res) => res.owner === userId._id && res.collaborators.length === 0
+        );
 
         this.setState({
           tasks: filtered,
@@ -41,6 +43,7 @@ export default class Tasks extends Component {
         console.log(error);
       });
   };
+
 
 
   handleChange = event => {
@@ -66,6 +69,7 @@ export default class Tasks extends Component {
           notes: response.data.notes,
           deadline: response.data.deadline,
           status: this.state.status,
+
           editForm: false
         });
       })

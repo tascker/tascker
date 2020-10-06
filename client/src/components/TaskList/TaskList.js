@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Tasklist(props) {
-  const filtered =
+
+  const searched =
     props.tasks.filter(task => {
       if (props.search) {
         return task.title.toLowerCase().includes(props.search.toLowerCase());
@@ -12,7 +13,7 @@ export default function Tasklist(props) {
 
   return (
     <div>
-      {filtered.map((task) => {
+      {searched.map((task) => {
         return (
           <div key={task._id}>
             <h3>
