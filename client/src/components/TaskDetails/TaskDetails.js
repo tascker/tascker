@@ -14,10 +14,6 @@ export default class TaskDetails extends Component {
     editForm: false,
   };
 
-  componentDidMount() {
-    this.getTaskFromDB();
-  }
-
   getTaskFromDB = () => {
     const id = this.props.match.params.id;
 
@@ -38,37 +34,6 @@ export default class TaskDetails extends Component {
       });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const id = this.props.match.params.id;
-    axios
-      .put(`api/tasks/${id}`, {
-        task: this.state.data,
-        title: this.state.title,
-        notes: this.state.notes,
-        deadline: this.state.deadline,
-        //  collaborators: this.state.collaborators,
-        status: this.state.status,
-      })
-      .then((response) => {
-        this.setState({
-          task: response.data,
-          title: response.data.title,
-          notes: response.data.notes,
-          deadline: response.data.deadline,
-          //   collaborators: response.data.collaborators,
-          status: response.data.status,
-        });
-      })
-      .catch((error) => {
-        if (error.response.status === 404) {
-          this.setState({
-            error: "Not Found",
-          });
-        }
-      });
-  };
-
   deleteTask = () => {
     const id = this.props.match.params.id;
     axios
@@ -81,18 +46,53 @@ export default class TaskDetails extends Component {
       });
   };
 
-  toggleEditForm = () => {
-    this.setState((state) => ({
-      editForm: !state.editForm,
-    }));
-  };
-
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const id = this.props.match.params.id;
+    axios
+      .put(`/api/tasks/${id}`, {
+        task: this.state.data,
+        title: this.state.title,
+        notes: this.state.notes,
+        deadline: this.state.deadline,
+        collaborators: this.state.collaborators,
+        status: this.state.status,
+      })
+      .then((response) => {
+        this.setState({
+          task: response.data,
+          title: response.data.title,
+          notes: response.data.notes,
+          deadline: response.data.deadline,
+          collaborators: response.data.collaborators,
+          status: response.data.status,
+        });
+      })
+      .catch((error) => {
+        if (error.response.status === 404) {
+          this.setState({
+            error: "Not Found",
+          });
+        }
+      });
+  };
+
+  toggleEditForm = () => {
+    this.setState((state) => ({
+      editForm: !state.editForm,
+    }));
+  };
+
+  componentDidMount() {
+    this.getTaskFromDB();
+  }
 
   render() {
     if (this.state.error) return <div>{this.state.error}</div>;
@@ -105,7 +105,6 @@ export default class TaskDetails extends Component {
 
         <p>Collaborators for this task:</p>
         <ul>
-          {" "}
           {this.state.collaborators.map((collab) => (
             <li> {collab.username} </li>
           ))}
@@ -114,6 +113,7 @@ export default class TaskDetails extends Component {
 
         <button onClick={this.deleteTask}>Delete</button>
         <button onClick={this.toggleEditForm}>Edit Task</button>
+
         {this.state.editForm && (
           <EditTask
             {...this.state}

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../services/auth";
 
-import logo from "../../img/logo.png";
+// import logo from "../../img/logo.png";
 
 export default function Navbar(props) {
   const logoutHandler = (props) => {
