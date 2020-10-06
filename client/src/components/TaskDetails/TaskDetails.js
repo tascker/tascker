@@ -17,7 +17,7 @@ export default class TaskDetails extends Component {
   componentDidMount() {
     this.getTaskFromDB();
   }
-  //collabList = []
+
   getTaskFromDB = () => {
     const id = this.props.match.params.id;
 
@@ -31,7 +31,7 @@ export default class TaskDetails extends Component {
           deadline: response.data.deadline,
           collaborators: response.data.collaborators,
           status: response.data.status,
-        })
+        });
       })
       .catch((error) => {
         console.log(error.response);
@@ -89,6 +89,7 @@ export default class TaskDetails extends Component {
         <h2>{this.state.title}</h2>
         <p>{this.state.notes}</p>
         <p>{this.state.deadline}</p>
+
         <p>Collaborators for this task:</p>
         <ul> {this.state.collaborators.map((collab) => <li> {collab.username} </li>)}</ul>
         <p>{this.state.status}</p>
