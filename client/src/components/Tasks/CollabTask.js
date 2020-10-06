@@ -4,13 +4,13 @@ import axios from "axios";
 import TaskList from "../TaskList/TaskList";
 
 export default class CollabTask extends Component {
-  state = {
-    tasks: [],
-  };
+    state = {
+        tasks: [],
+    };
 
-  componentDidMount() {
-    this.getTasksFromDB();
-  }
+    componentDidMount() {
+        this.getTasksFromDB();
+    }
 
 
     getTasksFromDB = () => {
@@ -26,7 +26,6 @@ export default class CollabTask extends Component {
                     if (taskList[i].collaborators.includes(userId._id))
                         collabTasksArray.push(taskList[i])
                 }
-
                 this.setState({
                     tasks: collabTasksArray,
                 });
@@ -39,9 +38,9 @@ export default class CollabTask extends Component {
     render() {
         return (
             <div>
-                <TaskList tasks={this.state.tasks} />
+                <TaskList tasks={this.state.tasks} search={this.props.search} />
             </div>
 
-    );
-  }
+        );
+    }
 }
