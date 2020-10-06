@@ -10,10 +10,6 @@ export default function Tasklist(props) {
       else return task
     })
 
-
-
-  //console.log("searched", searched);
-
   return (
     <div>
       {filtered.map((task) => {

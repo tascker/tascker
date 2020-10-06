@@ -15,7 +15,8 @@ export default class Tasks extends Component {
     title: "",
     notes: "",
     deadline: "",
-    status: ""
+    status: "",
+    pinned: false
   };
 
   componentDidMount() {
@@ -104,8 +105,7 @@ export default class Tasks extends Component {
         <h2>My Tasks</h2>
         <TaskList tasks={this.state.tasks} search={this.state.search} />
         <h2>My collab tasks</h2>
-        <CollabTask user={this.state.user} {...this.props} />
-        {/* here list only tasks with collaborators */}
+        <CollabTask user={this.state.user} search={this.state.search} {...this.props} />
         <Link to="/create-task">Add a new Task</Link>
       </div>
     );
