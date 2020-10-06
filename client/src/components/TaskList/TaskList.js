@@ -17,8 +17,8 @@ export default function Tasklist(props) {
           <div key={task._id}>
             <h3>
               <Link to={`/tasks/${task._id}`}>{task.title}</Link>
+              <span> {task.status}</span>
             </h3>
-            <span>{task.status}</span>
           </div>
         );
       })}
