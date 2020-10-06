@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CollabSelect from "./CollabSelect";
+import CollabSelect from "../CollabSelect/CollabSelect";
 import axios from "axios";
 
 export default class CreateTask extends Component {

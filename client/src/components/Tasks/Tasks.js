@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import TaskList from "../TaskList/TaskList";
 import Search from "../Search/Search";
-import CollabTask from "./CollabTask"
-import EditTask from "../EditTask/EditTask"
+import CollabTask from "../CollabTask/CollabTask";
+import EditTask from "../EditTask/EditTask";
 
 export default class Tasks extends Component {
   state = {
@@ -42,24 +42,23 @@ export default class Tasks extends Component {
       });
   };
 
-
-
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const id = this.props.match.params.id;
-    axios.put(`/api/tasks/${id}`, {
-      title: this.state.title,
-      notes: this.state.notes,
-      deadline: this.state.deadline,
-      status: this.state.status
-    })
+    axios
+      .put(`/api/tasks/${id}`, {
+        title: this.state.title,
+        notes: this.state.notes,
+        deadline: this.state.deadline,
+        status: this.state.status,
+      })
       .then((response) => {
         this.setState({
           project: response.data,
@@ -68,19 +67,19 @@ export default class Tasks extends Component {
           deadline: response.data.deadline,
           status: this.state.status,
 
-          editForm: false
+          editForm: false,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
-      })
-  }
+      });
+  };
 
   toggleEditForm = () => {
     this.setState((state) => ({
-      editForm: !state.editForm
-    }))
-  }
+      editForm: !state.editForm,
+    }));
+  };
 
   submitHandler = (event) => {
     event.preventDefault();
@@ -94,7 +93,6 @@ export default class Tasks extends Component {
       search: searchInput,
     });
   };
-
 
   render() {
     return (
