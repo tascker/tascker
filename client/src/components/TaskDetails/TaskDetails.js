@@ -15,7 +15,7 @@ export default class TaskDetails extends Component {
   componentDidMount() {
     this.getTaskFromDB();
   }
-  //collabList = []
+
   getTaskFromDB = () => {
     const id = this.props.match.params.id;
 
@@ -29,24 +29,42 @@ export default class TaskDetails extends Component {
           deadline: response.data.deadline,
           collaborators: response.data.collaborators,
           status: response.data.status,
-        })
+        });
       })
       .catch((error) => {
         console.log(error.response);
       });
   };
 
+  deleteTask = () => {
+    const id = this.props.match.params.id;
+    console.log(this.props.match.params.id);
+    axios
+      .delete(`/api/tasks/${id}`)
+      .then(() => {
+        this.props.history.push("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   render() {
-    console.log("is thi working?", this.state.collaborators)
+    console.log("is this working?", this.state.collaborators);
     return (
       <div>
         <h2>{this.state.title}</h2>
         <p>{this.state.notes}</p>
         <p>{this.state.deadline}</p>
         <p>Collabs for this task:</p>
-        <ul> {this.state.collaborators.map((collab) => <li> {collab.username} </li>)}</ul>
+        <ul>
+          {this.state.collaborators.map((collab) => (
+            <li> {collab.username} </li>
+          ))}
+        </ul>
         <p>{this.state.status}</p>
-      </div >
+        <button onClick={this.deleteTask}>Delete Task</button>
+      </div>
     );
   }
 }

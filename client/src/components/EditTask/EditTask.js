@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class EditTask extends Component {
-    render() {
-        return (
-            <div>
-
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h2>Edit task</h2>
+      </div>
+    );
+  }
 }
