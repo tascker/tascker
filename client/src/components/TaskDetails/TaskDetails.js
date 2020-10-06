@@ -11,7 +11,7 @@ export default class TaskDetails extends Component {
     deadline: "",
     collaborators: [],
     status: "",
-    editForm: false
+    editForm: false,
   };
 
   componentDidMount() {
@@ -38,18 +38,19 @@ export default class TaskDetails extends Component {
       });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const id = this.props.match.params.id;
-    axios.put(`api/tasks/${id}`, {
-      task: this.state.data,
-      title: this.state.title,
-      notes: this.state.notes,
-      deadline: this.state.deadline,
-      //  collaborators: this.state.collaborators,
-      status: this.state.status
-    })
-      .then(response => {
+    axios
+      .put(`api/tasks/${id}`, {
+        task: this.state.data,
+        title: this.state.title,
+        notes: this.state.notes,
+        deadline: this.state.deadline,
+        //  collaborators: this.state.collaborators,
+        status: this.state.status,
+      })
+      .then((response) => {
         this.setState({
           task: response.data,
           title: response.data.title,
@@ -57,33 +58,45 @@ export default class TaskDetails extends Component {
           deadline: response.data.deadline,
           //   collaborators: response.data.collaborators,
           status: response.data.status,
-        })
+        });
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.response.status === 404) {
           this.setState({
-            error: 'Not Found'
-          })
+            error: "Not Found",
+          });
         }
       });
-  }
+  };
+
+  deleteTask = () => {
+    const id = this.props.match.params.id;
+    axios
+      .delete(`/api/tasks/${id}`)
+      .then(() => {
+        this.props.history.push("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   toggleEditForm = () => {
     this.setState((state) => ({
-      editForm: !state.editForm
-    }))
-  }
+      editForm: !state.editForm,
+    }));
+  };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   render() {
-    if (this.state.error) return <div>{this.state.error}</div>
-    if (!this.state.task) return <p>Loading....</p>
+    if (this.state.error) return <div>{this.state.error}</div>;
+    if (!this.state.task) return <p>Loading....</p>;
     return (
       <div>
         <h2>{this.state.title}</h2>
@@ -91,17 +104,24 @@ export default class TaskDetails extends Component {
         <p>{this.state.deadline}</p>
 
         <p>Collaborators for this task:</p>
-        <ul> {this.state.collaborators.map((collab) => <li> {collab.username} </li>)}</ul>
+        <ul>
+          {" "}
+          {this.state.collaborators.map((collab) => (
+            <li> {collab.username} </li>
+          ))}
+        </ul>
         <p>{this.state.status}</p>
 
+        <button onClick={this.deleteTask}>Delete</button>
         <button onClick={this.toggleEditForm}>Edit Task</button>
         {this.state.editForm && (
           <EditTask
             {...this.state}
             handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit} />
+            handleSubmit={this.handleSubmit}
+          />
         )}
-      </div >
+      </div>
     );
   }
 }

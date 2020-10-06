@@ -6,7 +6,6 @@ export default class CollabSelect extends React.Component {
     usersList: [],
   };
 
-
   getUsersFromDB = () => {
     axios.get("/api/user").then((response) => {
       this.setState({
@@ -30,7 +29,7 @@ export default class CollabSelect extends React.Component {
       }
     }
     // console.log("selected", value)
-    this.props.setQuery(value)
+    this.props.setQuery(value);
   };
 
   render() {
