@@ -139,9 +139,18 @@ export default class Tasks extends Component {
               <Col
                 style={{
                   display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "stretch",
+                  flexDirection: "row-reverse",
+                  alignItems: "center",
+                  height: "10vh",
+                }}
+              >
+                <Logout user={this.props.user} clearUser={this.props.setUser} />
+              </Col>
+            </Row>
+            <Row>
+              <Col
+                style={{
+                  height: "10vh",
                 }}
               >
                 <Search
@@ -149,7 +158,6 @@ export default class Tasks extends Component {
                   submitHandler={this.submitHandler}
                   searchHandler={this.searchHandler}
                 />
-                <Logout user={this.props.user} clearUser={this.props.setUser} />
               </Col>
             </Row>
             <Row>
@@ -162,18 +170,34 @@ export default class Tasks extends Component {
                 />
               </Col>
               <Col>
-                <h2>Pinned Task</h2>
-                <TaskList
-                  tasks={this.state.pinnedTasks}
-                  search={this.state.search}
-                  changePinned={this.changePinned}
-                />
-                <h2>My collab tasks</h2>
-                <CollabTask
-                  user={this.state.user}
-                  search={this.state.search}
-                  {...this.props}
-                />
+                <Row>
+                  <Col
+                    style={{
+                      height: "30vh",
+                    }}
+                  >
+                    <h2>Pinned Task</h2>
+                    <TaskList
+                      tasks={this.state.pinnedTasks}
+                      search={this.state.search}
+                      changePinned={this.changePinned}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col
+                    style={{
+                      height: "30vh",
+                    }}
+                  >
+                    <h2>My collab tasks</h2>
+                    <CollabTask
+                      user={this.state.user}
+                      search={this.state.search}
+                      {...this.props}
+                    />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Col>
