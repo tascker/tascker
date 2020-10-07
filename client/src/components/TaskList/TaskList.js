@@ -18,6 +18,8 @@ export default function Tasklist(props) {
             <h3>
               <Link to={`/tasks/${task._id}`}>{task.title}</Link>
               <span> {task.status}</span>
+
+              <span><button onClick={() => props.changePinned(task._id)}>Pin</button></span>
             </h3>
           </div>
         );

@@ -20,7 +20,10 @@ const TaskSchema = new Schema(
         ref: "User",
       },
     ],
-    pinned: Boolean
+    pinned: {
+      type: Boolean,
+      default: false
+    },
   },
   { timestamps: true }
 );

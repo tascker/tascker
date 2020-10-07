@@ -58,22 +58,25 @@ export default class TaskDetails extends Component {
     const id = this.props.match.params.id;
     axios
       .put(`/api/tasks/${id}`, {
-        task: this.state.data,
+
+        // task: this.state.data,
         title: this.state.title,
         notes: this.state.notes,
         deadline: this.state.deadline,
-        collaborators: this.state.collaborators,
-        status: this.state.status,
+        // collaborators: this.state.collaborators,
+
       })
       .then((response) => {
         this.setState({
-          task: response.data,
           title: response.data.title,
           notes: response.data.notes,
           deadline: response.data.deadline,
           collaborators: response.data.collaborators,
           status: response.data.status,
+          editForm: false
         });
+        console.log("done")
+        this.props.history.push("/dashboard");
       })
       .catch((error) => {
         if (error.response.status === 404) {
@@ -84,15 +87,15 @@ export default class TaskDetails extends Component {
       });
   };
 
-  toggleEditForm = () => {
-    this.setState((state) => ({
-      editForm: !state.editForm,
-    }));
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log("name,value", name, value)
+    this.setState({
+      [name]: value,
+    });
   };
 
-  componentDidMount() {
-    this.getTaskFromDB();
-  }
 
   render() {
     if (this.state.error) return <div>{this.state.error}</div>;
@@ -103,7 +106,10 @@ export default class TaskDetails extends Component {
         <p>{this.state.notes}</p>
         <p>{this.state.deadline}</p>
         {this.state.collaborators.length > 0 && <p>Collaborators for this task:</p>}
-        <ul> {this.state.collaborators.map((collab) => <li> {collab.username} </li>)}</ul>
+        <ul> {this.state.collaborators.map((collab) =>
+          <li> {collab.username} </li>
+        )}
+        </ul>
         <p>{this.state.status}</p>
 
         <button onClick={this.deleteTask}>Delete</button>
