@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, InputGroup } from "react-bootstrap";
-import { ArrowRight } from "react-bootstrap-icons";
+import { Form } from "react-bootstrap";
 
 export default function Search(props) {
   return (

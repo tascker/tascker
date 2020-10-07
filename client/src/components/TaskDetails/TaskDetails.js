@@ -1,17 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import EditTask from "../EditTask/EditTask";
-import Search from "../Search/Search";
 import Logout from "../Logout/Logout";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Form,
-  FormLabel,
-  FormControl,
-} from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 
 export default class TaskDetails extends Component {
