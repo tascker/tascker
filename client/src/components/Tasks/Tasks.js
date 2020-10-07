@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 import TaskList from "../TaskList/TaskList";
 import Search from "../Search/Search";
 import CollabTask from "../CollabTask/CollabTask";
+import { Button, Container, Row, Col } from "react-bootstrap";
+import Logout from "../Logout/Logout";
 
 export default class Tasks extends Component {
   state = {
@@ -42,45 +45,6 @@ export default class Tasks extends Component {
       });
   };
 
-  // handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // };
-
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const id = this.props.match.params.id;
-  //   axios
-  //     .put(`/api/tasks/${id}`, {
-  //       title: this.state.title,
-  //       notes: this.state.notes,
-  //       deadline: this.state.deadline,
-  //       status: this.state.status,
-  //     })
-  //     .then((response) => {
-  //       this.setState({
-  //         project: response.data,
-  //         title: response.data.title,
-  //         notes: response.data.notes,
-  //         deadline: response.data.deadline,
-  //         status: this.state.status,
-
-  //         editForm: false,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // toggleEditForm = () => {
-  //   this.setState((state) => ({
-  //     editForm: !state.editForm,
-  //   }));
-  // };
-
   submitHandler = (event) => {
     event.preventDefault();
   };
@@ -96,26 +60,50 @@ export default class Tasks extends Component {
 
   render() {
     return (
-      <div>
-        <Search
-          search={this.state.search}
-          submitHandler={this.submitHandler}
-          searchHandler={this.searchHandler}
-        />
-        <h2>My Tasks</h2>
-        <TaskList
-          tasks={this.state.tasks}
-          search={this.state.search}
-          {...this.props}
-        />
-        <h2>My collab tasks</h2>
-        <CollabTask
-          user={this.state.user}
-          search={this.state.search}
-          {...this.props}
-        />
-        <Link to="/create-task">Add a new Task</Link>
-      </div>
+      <Container>
+        <Row>
+          <Col xs={2} md={2}>
+            <Button to="/create-task">Add a new Task</Button>
+          </Col>
+          <Col>
+            <Row>
+              <Col
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "stretch",
+                }}
+              >
+                <Search
+                  search={this.state.search}
+                  submitHandler={this.submitHandler}
+                  searchHandler={this.searchHandler}
+                />
+                <Logout user={this.props.user} clearUser={this.props.setUser} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <h2>My Tasks</h2>
+                <TaskList
+                  tasks={this.state.tasks}
+                  search={this.state.search}
+                  {...this.props}
+                />
+              </Col>
+              <Col>
+                <h2>My collab tasks</h2>
+                <CollabTask
+                  user={this.state.user}
+                  search={this.state.search}
+                  {...this.props}
+                />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
