@@ -42,12 +42,27 @@
   }
 }
 
-nav {
-  background-color: skyblue;
-  /* width: 100vw; */
-  /* max-width: 500px; */
-  height: 3.5rem;
+.sidebar {
+  height: 100%;
+  width: 90px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #3d128d;
+  overflow-x: hidden;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
+  /* align-items: center; */
+}
+
+.landing {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100vw;
+  height: 100vh;
   align-items: center;
+  justify-content: center;
+  margin: auto;
 }

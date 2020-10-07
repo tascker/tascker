@@ -5,7 +5,7 @@ import Home from "./components/Home/Home";
 // import Auth from "./components/Auth.js";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar/Navbar";
+
 import Tasks from "./components/Tasks/Tasks";
 // import TaskList from "./components/TaskList/TaskList";
 import CreateTask from "./components/CreateTask/CreateTask";

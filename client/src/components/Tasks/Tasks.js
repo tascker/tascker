@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Navbar from "../Navbar/Navbar";
+import Sidebar from "../Sidebar/Sidebar";
 import TaskList from "../TaskList/TaskList";
 import Search from "../Search/Search";
 import CollabTask from "../CollabTask/CollabTask";
@@ -124,6 +124,7 @@ export default class Tasks extends Component {
   render() {
     return (
       <Container>
+        <Sidebar user={this.props.user} clearUser={this.props.setUser} />
         <Row>
           <Col
             xs={2}
