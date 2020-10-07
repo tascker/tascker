@@ -74,10 +74,12 @@ class App extends Component {
           render={(props) => {
             if (this.state.user) {
               return <TaskDetails {...props} user={this.state.user} />;
+
             } else {
               return <Redirect to="/" />;
             }
-          }}
+          }
+          }
         />
 
         <Route

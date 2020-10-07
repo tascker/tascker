@@ -13,7 +13,7 @@ export default class CreateTask extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     //console.log("user", this.props.user)
-    console.log("collab", this.state.collaborators);
+    //console.log("collab", this.state.collaborators);
 
     const { title, notes, deadline } = this.state;
     const owner = this.props.user;
@@ -33,6 +33,7 @@ export default class CreateTask extends Component {
           deadline: "",
           collaborators: [],
         });
+        this.props.history.push("/dashboard");
       });
   };
 
@@ -49,7 +50,7 @@ export default class CreateTask extends Component {
     this.setState({
       collaborators: query,
     });
-    console.log("in create collab", this.state.collaborators);
+    //  console.log("in create collab", this.state.collaborators);
   };
 
   render() {
@@ -87,7 +88,7 @@ export default class CreateTask extends Component {
           <CollabSelect
             //options={this.state.options}
             setQuery={this.setQuery}
-            //collaborators={this.state.collaborators}
+          //collaborators={this.state.collaborators}
           />
           <button type="submit">Create</button>
         </form>

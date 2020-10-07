@@ -42,14 +42,15 @@ router.delete("/:id", (req, res) => {
 
 // ADD NEW TASK
 router.post("/", (req, res) => {
-  const { title, notes, deadline, status, owner, collaborators } = req.body;
+  const { title, notes, deadline, status, owner, collaborators, pinned } = req.body;
   Task.create({
     title,
     notes,
     deadline,
     status,
     owner,
-    collaborators
+    collaborators,
+    pinned
   })
     .then((task) => {
       res.status(201).json(task);
@@ -68,6 +69,22 @@ router.put("/:id", (req, res) => {
     { new: true }
   )
     .then((task) => {
+      res.status(200).json(task);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+});
+
+router.patch("/:id", (req, res) => {
+  const { pinned } = req.body;
+  Task.findByIdAndUpdate(
+    req.params.id,
+    { pinned },
+    { new: true }
+  )
+    .then((task) => {
+      console.log(task)
       res.status(200).json(task);
     })
     .catch((error) => {
