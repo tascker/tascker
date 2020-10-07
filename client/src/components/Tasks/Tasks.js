@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import TaskList from "../TaskList/TaskList";
 import Search from "../Search/Search";
 import CollabTask from "../CollabTask/CollabTask";
+
 import EditTask from "../EditTask/EditTask";
 import PinnedTask from "./PinnedTask"
+
 
 export default class Tasks extends Component {
   state = {
@@ -18,6 +20,7 @@ export default class Tasks extends Component {
     status: "",
     pinned: false,
     pinnedTasks: []
+
   };
 
   componentDidMount() {
@@ -50,12 +53,13 @@ export default class Tasks extends Component {
       });
   };
 
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
+  // handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // };
+
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -83,11 +87,12 @@ export default class Tasks extends Component {
       });
   };
 
-  toggleEditForm = () => {
-    this.setState((state) => ({
-      editForm: !state.editForm,
-    }));
-  };
+
+  // toggleEditForm = () => {
+  //   this.setState((state) => ({
+  //     editForm: !state.editForm,
+  //   }));
+  // };
 
   submitHandler = (event) => {
     event.preventDefault();
@@ -135,13 +140,19 @@ export default class Tasks extends Component {
           submitHandler={this.submitHandler}
           searchHandler={this.searchHandler}
         />
+
         <h2>Tasks</h2>
         <h3>Pinned Task</h3>
         <TaskList tasks={this.state.pinnedTasks} search={this.state.search} changePinned={this.changePinned} />
         <h3>My tasks</h3>
         <TaskList tasks={this.state.tasks} search={this.state.search} changePinned={this.changePinned} />
+
         <h2>My collab tasks</h2>
-        <CollabTask user={this.state.user} search={this.state.search} {...this.props} />
+        <CollabTask
+          user={this.state.user}
+          search={this.state.search}
+          {...this.props}
+        />
         <Link to="/create-task">Add a new Task</Link>
       </div>
     );
