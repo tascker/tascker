@@ -57,13 +57,6 @@ export default class Tasks extends Component {
       });
   };
 
-  // handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // };
-
   handleSubmit = (event) => {
     event.preventDefault();
     const id = this.props.match.params.id;
@@ -145,7 +138,7 @@ export default class Tasks extends Component {
             <Row>
               <Col
                 style={{
-                  flex: 1,
+                  display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
                   alignItems: "stretch",
