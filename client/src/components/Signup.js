@@ -115,7 +115,7 @@ export default class Signup extends Component {
             <button type="submit">Signup</button>
           </form>
         </div>
-        {/* {this.state.error && <Alert>{this.state.error}</Alert>} */}
+        {this.state.message && <p>{this.state.message}</p>}
       </>
     );
   }
