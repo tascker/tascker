@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import CollabSelect from "../CollabSelect/CollabSelect";
 import axios from "axios";
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  Form,
+  FormLabel,
+  FormControl,
+} from "react-bootstrap";
 
 export default class CreateTask extends Component {
   state = {
@@ -55,44 +64,55 @@ export default class CreateTask extends Component {
 
   render() {
     return (
-      <>
-        <h1>Create a task</h1>
-        <form onSubmit={this.submitHandler}>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            value={this.state.title}
-            onChange={this.changeHandler}
-          />
+      <Container>
+        <Row>
+          <Col
+            xs={2}
+            md={2}
+            style={{ backgroundColor: "#f4f5f6", height: "100vh" }}
+          ></Col>
+          <Col>
+            <h1>Create a task</h1>
+            <Form onSubmit={this.submitHandler}>
+              <Form.Label htmlFor="title">Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                id="title"
+                value={this.state.title}
+                onChange={this.changeHandler}
+              />
 
-          <label htmlFor="notes">Notes</label>
-          <textarea
-            name="notes"
-            id="notes"
-            value={this.state.notes}
-            onChange={this.changeHandler}
-          ></textarea>
+              <Form.Label htmlFor="notes">Notes</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows="3"
+                name="notes"
+                id="notes"
+                value={this.state.notes}
+                onChange={this.changeHandler}
+              />
 
-          <label htmlFor="deadline">Deadline</label>
-          <input
-            type="date"
-            name="deadline"
-            id="deadline"
-            value={this.state.deadline}
-            onChange={this.changeHandler}
-          />
+              <Form.Label htmlFor="deadline">Deadline</Form.Label>
+              <Form.Control
+                type="date"
+                name="deadline"
+                id="deadline"
+                value={this.state.deadline}
+                onChange={this.changeHandler}
+              />
 
-          <label htmlFor="collaborators">Collaborators</label>
-          <CollabSelect
-            //options={this.state.options}
-            setQuery={this.setQuery}
-          //collaborators={this.state.collaborators}
-          />
-          <button type="submit">Create</button>
-        </form>
-      </>
+              <Form.Label htmlFor="collaborators">Collaborators</Form.Label>
+              <CollabSelect
+                //options={this.state.options}
+                setQuery={this.setQuery}
+                //collaborators={this.state.collaborators}
+              />
+              <Button type="submit">Create</Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

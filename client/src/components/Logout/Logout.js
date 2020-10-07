@@ -12,11 +12,7 @@ export default function Logout(props) {
 
   return (
     <div>
-      <Button
-        className="awesome-link"
-        to="/"
-        onClick={() => logoutHandler(props)}
-      >
+      <Button to="/" onClick={() => logoutHandler(props)}>
         Logout
       </Button>
     </div>
