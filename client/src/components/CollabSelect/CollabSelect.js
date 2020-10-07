@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Form } from "react-bootstrap";
 
 export default class CollabSelect extends React.Component {
   state = {
@@ -35,7 +36,10 @@ export default class CollabSelect extends React.Component {
   render() {
     return (
       <>
-        <select
+        <Form.Control
+          as="select"
+          htmlSize={5}
+          custom
           name="collaborators"
           id="collaborators"
           multiple={true}
@@ -45,7 +49,7 @@ export default class CollabSelect extends React.Component {
           {this.state.usersList.map((user) => {
             return <option value={user._id}>{user.username}</option>;
           })}
-        </select>
+        </Form.Control>
       </>
     );
   }
