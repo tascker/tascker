@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import CollabSelect from "../CollabSelect/CollabSelect";
 import axios from "axios";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Form,
-  FormLabel,
-  FormControl,
-} from "react-bootstrap";
+import { Button, Container, Row, Col, Form } from "react-bootstrap";
 
 export default class CreateTask extends Component {
   state = {

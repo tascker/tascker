@@ -40,7 +40,13 @@ export default function Tasklist(props) {
                 {task.title}
               </Link>
             </h4>
-            <p> {task.status}</p>
+            <p>
+              {task.status === "to-do" ? (
+                <span style={{ backgroundColor: "green" }}>{task.status}</span>
+              ) : (
+                <span style={{ backgroundColor: "red" }}>{task.status}</span>
+              )}
+            </p>
           </div>
         );
       })}

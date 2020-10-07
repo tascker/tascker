@@ -128,7 +128,14 @@ export default class Tasks extends Component {
           <Col
             xs={2}
             md={2}
-            style={{ backgroundColor: "#f4f5f6", height: "100vh" }}
+            style={{
+              backgroundColor: "#f4f5f6",
+              height: "100vh",
+              display: "flex",
+              flexDirection: "column-reverse",
+              alignItems: "center",
+              paddingBottom: "5vh",
+            }}
           >
             <Link to="/create-task">
               <Button>Add a new Task</Button>
@@ -136,16 +143,7 @@ export default class Tasks extends Component {
           </Col>
           <Col>
             <Row>
-              <Col
-                style={{
-                  display: "flex",
-                  flexDirection: "row-reverse",
-                  alignItems: "center",
-                  height: "10vh",
-                }}
-              >
-                <Logout user={this.props.user} clearUser={this.props.setUser} />
-              </Col>
+              <Logout user={this.props.user} clearUser={this.props.setUser} />
             </Row>
             <Row>
               <Col

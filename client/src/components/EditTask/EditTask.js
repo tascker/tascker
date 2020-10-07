@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Form,
-  FormLabel,
-  FormControl,
-} from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 export default class EditTask extends Component {
   render() {

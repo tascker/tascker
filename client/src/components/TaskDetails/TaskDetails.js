@@ -1,17 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import EditTask from "../EditTask/EditTask";
-import Search from "../Search/Search";
 import Logout from "../Logout/Logout";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Form,
-  FormLabel,
-  FormControl,
-} from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 
 export default class TaskDetails extends Component {
@@ -114,7 +105,6 @@ export default class TaskDetails extends Component {
     return (
       <Container>
         <Row>
-          {" "}
           <Col
             xs={2}
             md={2}
@@ -122,16 +112,7 @@ export default class TaskDetails extends Component {
           ></Col>
           <Col>
             <Row>
-              <Col
-                style={{
-                  display: "flex",
-                  flexDirection: "row-reverse",
-                  alignItems: "center",
-                  height: "10vh",
-                }}
-              >
-                <Logout user={this.props.user} clearUser={this.props.setUser} />
-              </Col>
+              <Logout user={this.props.user} clearUser={this.props.setUser} />
             </Row>
             <Row>
               <Col>

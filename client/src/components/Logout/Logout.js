@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { logout } from "../../services/auth";
-import { Button } from "react-bootstrap";
+import { Col, Button } from "react-bootstrap";
 
 export default function Logout(props) {
   const logoutHandler = (props) => {
@@ -11,8 +10,20 @@ export default function Logout(props) {
   };
 
   return (
-    <Button to="/" onClick={() => logoutHandler(props)}>
-      Logout
-    </Button>
+    <Col
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        height: "10vh",
+      }}
+    >
+      {props.user && <h3>Hello, {props.user.username} 👋🏼 </h3>}
+
+      <Button to="/" onClick={() => logoutHandler(props)}>
+        Logout
+      </Button>
+    </Col>
   );
 }
