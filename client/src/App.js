@@ -10,6 +10,8 @@ import Tasks from "./components/Tasks/Tasks";
 // import TaskList from "./components/TaskList/TaskList";
 import CreateTask from "./components/CreateTask/CreateTask";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
+//UI framework
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   state = {
@@ -25,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar user={this.state.user} clearUser={this.setUser} />
+        {/* <Navbar user={this.state.user} clearUser={this.setUser} /> */}
         <Route exact path="/" component={Home} />
 
         <Route
@@ -33,35 +35,25 @@ class App extends Component {
           path="/signup"
           render={(props) => <Signup setUser={this.setUser} {...props} />}
         />
-        <Route
-          exact
-          path="/login"
-          render={(props) => <Login setUser={this.setUser} {...props} />}
-        />
 
-        {/* <Route
-          exact
-          path="/signup"
-          render={(props) => {
-            if (this.state.user) {
-              return <TaskList {...props} user={this.state.user} />;
-            } else {
-              return <Redirect to="/" />;
-            }
-          }}
-        />
         <Route
           exact
           path="/login"
           render={(props) => <Login setUser={this.setUser} {...props} />}
-        /> */}
+        />
 
         <Route
           exact
           path="/dashboard"
           render={(props) => {
             if (this.state.user) {
-              return <Tasks {...props} user={this.state.user} />;
+              return (
+                <Tasks
+                  {...props}
+                  user={this.state.user}
+                  setUser={this.setUser}
+                />
+              );
             } else {
               return <Redirect to="/" />;
             }
