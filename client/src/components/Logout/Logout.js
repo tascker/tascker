@@ -11,10 +11,8 @@ export default function Logout(props) {
   };
 
   return (
-    <div>
-      <Button to="/" onClick={() => logoutHandler(props)}>
-        Logout
-      </Button>
-    </div>
+    <Button to="/" onClick={() => logoutHandler(props)}>
+      Logout
+    </Button>
   );
 }

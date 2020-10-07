@@ -1,6 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import EditTask from "../EditTask/EditTask";
+import Search from "../Search/Search";
+import Logout from "../Logout/Logout";
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  Form,
+  FormLabel,
+  FormControl,
+} from "react-bootstrap";
+import { Trash } from "react-bootstrap-icons";
 
 export default class TaskDetails extends Component {
   state = {
@@ -100,32 +112,60 @@ export default class TaskDetails extends Component {
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.task) return <p>Loading....</p>;
     return (
-      <div>
-        <h2>{this.state.title}</h2>
-        <p>{this.state.notes}</p>
-        <p>{this.state.deadline}</p>
-        {this.state.collaborators.length > 0 && (
-          <p>Collaborators for this task:</p>
-        )}
-        <ul>
+      <Container>
+        <Row>
           {" "}
-          {this.state.collaborators.map((collab) => (
-            <li> {collab.username} </li>
-          ))}
-        </ul>
-        <p>{this.state.status}</p>
+          <Col
+            xs={2}
+            md={2}
+            style={{ backgroundColor: "#f4f5f6", height: "100vh" }}
+          ></Col>
+          <Col>
+            <Row>
+              <Col
+                style={{
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  alignItems: "center",
+                  height: "10vh",
+                }}
+              >
+                <Logout user={this.props.user} clearUser={this.props.setUser} />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <h2>{this.state.title}</h2>
+                <span>{this.state.status}</span>
+                <p>{this.state.notes}</p>
+                <p>{this.state.deadline}</p>
+                {this.state.collaborators.length > 0 && <h4>Collaborators</h4>}
+                <ul>
+                  {" "}
+                  {this.state.collaborators.map((collab) => (
+                    <li> {collab.username} </li>
+                  ))}
+                </ul>
 
-        <button onClick={this.deleteTask}>Delete</button>
-        <button onClick={this.toggleEditForm}>Edit Task</button>
+                <Button onClick={this.deleteTask} variant="danger">
+                  <Trash />
+                </Button>
 
-        {this.state.editForm && (
-          <EditTask
-            {...this.state}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-          />
-        )}
-      </div>
+                <Button onClick={this.toggleEditForm}>Edit Task</Button>
+              </Col>
+              <Col>
+                {this.state.editForm && (
+                  <EditTask
+                    {...this.state}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                  />
+                )}
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
