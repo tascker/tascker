@@ -48,7 +48,9 @@ componentDidMount() {
     console.log(this.props.status);
     return (
       <>
-        <h2>Edit the task</h2>
+        <h2 className="dashboard-heading" style={{ paddingTop: "15px" }}>
+          Edit the task
+        </h2>
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Label htmlFor="title">Title</Form.Label>
           <Form.Control
