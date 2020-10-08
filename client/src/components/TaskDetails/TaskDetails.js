@@ -112,9 +112,12 @@ export default class TaskDetails extends Component {
 
   collabChange = (event) => {
     console.log(event[0].value, "event");
-    this.setState({
-      collaborators: [...this.state.collaborators, event[0].value],
-    });
+    event.map(eve => {
+
+      this.setState({
+        collaborators: [...this.state.collaborators, eve.value],
+      })
+    })
   };
 
   render() {
@@ -171,7 +174,7 @@ export default class TaskDetails extends Component {
                 <hr />
                 <ul>
                   {this.state.collaborators.map((collab) => (
-                    <li key={collab._id}> {collab.username} </li>
+                    <li key={collab._id}>{collab.username}  </li>
                   ))}
                 </ul>
 
