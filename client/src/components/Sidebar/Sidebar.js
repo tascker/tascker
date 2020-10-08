@@ -1,27 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, Col } from "react-bootstrap";
 import { logout } from "../../services/auth";
 // import { Cart } from "grommet-icons";
 import logo from "../../img/logo1.png";
 
 export default function Sidebar(props) {
-  const logoutHandler = (props) => {
-    logout().then(() => {
-      props.clearUser(null);
-    });
-  };
-
   return (
-    <ul className="sidebar">
-      <li>
-        <Link to="/dashboard" className="nav">
-          <span role="img" aria-label="Home">
-            🏠
-          </span>
-        </Link>
-      </li>
-      <li>{/* <Cart /> */}</li>
-      <li>Users</li>
-    </ul>
+    <Col
+      xs={2}
+      md={2}
+      style={{
+        backgroundColor: "#3D1B8B",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column-reverse",
+        alignItems: "center",
+        paddingBottom: "5vh",
+      }}
+    >
+      <Link to="/dashboard" className="nav">
+        <Button>Dashboard</Button>
+      </Link>
+      <Link to="/create-task">
+        <Button>Add a new Task</Button>
+      </Link>
+    </Col>
   );
 }
