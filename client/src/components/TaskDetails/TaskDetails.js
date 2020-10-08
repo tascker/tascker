@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import EditTask from "../EditTask/EditTask";
 import Logout from "../Logout/Logout";
-import Sidebar from "../Sidebar/Sidebar";
 import { Alert, Button, Container, Row, Col } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import Sidebar from "../Sidebar/Sidebar";
