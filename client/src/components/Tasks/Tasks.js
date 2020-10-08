@@ -56,6 +56,32 @@ export default class Tasks extends Component {
       });
   };
 
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const id = this.props.match.params.id;
+  //   axios
+  //     .put(`/api/tasks/${id}`, {
+  //       title: this.state.title,
+  //       notes: this.state.notes,
+  //       deadline: this.state.deadline,
+  //       status: this.state.status,
+  //       pinned: this.state.pinned,
+  //     })
+  //     .then((response) => {
+  //       this.setState({
+  //         project: response.data,
+  //         title: response.data.title,
+  //         notes: response.data.notes,
+  //         deadline: response.data.deadline,
+  //         status: this.state.status,
+  //         pinned: this.state.pinned,
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   submitHandler = (event) => {
     event.preventDefault();
   };
@@ -106,7 +132,10 @@ export default class Tasks extends Component {
             <Row>
               <Col
                 style={{
-                  height: "10vh",
+                  height: "7vh",
+                  paddingTop: "8px",
+                  backgroundColor: "#f4f5f6",
+                  borderBottom: "1px solid #d0d0d0",
                 }}
               >
                 <Search
@@ -117,8 +146,8 @@ export default class Tasks extends Component {
               </Col>
             </Row>
             <Row>
-              <Col style={{ backgrounColor: "#EDEDED" }}>
-                <h2>My Tasks</h2>
+              <Col style={{ paddingTop: "15px" }}>
+                <h2 className="dashboard-heading">My tasks</h2>
                 <TaskList
                   tasks={this.state.tasks}
                   search={this.state.search}
@@ -130,9 +159,10 @@ export default class Tasks extends Component {
                   <Col
                     style={{
                       height: "30vh",
+                      paddingTop: "15px",
                     }}
                   >
-                    <h2>Pinned Task</h2>
+                    <h2 className="dashboard-heading">Pinned Task</h2>
                     <TaskList
                       tasks={this.state.pinnedTasks}
                       search={this.state.search}
@@ -146,7 +176,7 @@ export default class Tasks extends Component {
                       height: "30vh",
                     }}
                   >
-                    <h2>My collab tasks</h2>
+                    <h2 className="dashboard-heading">My collab tasks</h2>
                     <CollabTask
                       user={this.state.user}
                       search={this.state.search}
