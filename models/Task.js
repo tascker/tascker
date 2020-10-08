@@ -22,7 +22,7 @@ const TaskSchema = new Schema(
     ],
     pinned: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
   { timestamps: true }
