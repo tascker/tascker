@@ -1,7 +1,48 @@
 import React, { Component } from "react";
+import axios from 'axios'
+import Select from 'react-select'
 
 export default class EditTask extends Component {
+    state = {
+        status: "",
+        allStatus: [
+            { name: "to-do", label: "to-do" },
+            { name: "on going", label: "on going" },
+            { name: "done", label: "done" }],
+        usersList: [],
+    }
+
+    getOptions() {
+        const res = this.state.allStatus
+
+        const options = res.map(d => ({
+            "value": d.name,
+            "label": d.label
+        }))
+        this.setState({ status: options.value })
+
+    }
+    componentDidMount() {
+        this.getOptions();
+        this.getUsersFromDB();
+    }
+
+    getUsersFromDB = () => {
+        axios.get("/api/user").then((response) => {
+            //   console.log("user", response.data)
+            const collabOptions = response.data.map(user => ({
+                "value": user._id,
+                "label": user.username
+            }))
+            //  console.log("collab", collabOptions)
+            this.setState({
+                usersList: collabOptions,
+            });
+            //   console.log(this.state.usersList)
+        });
+    };
     render() {
+        console.log(this.props.status)
         return (
             <div>
                 <h2>Edit the task</h2>
@@ -35,12 +76,12 @@ export default class EditTask extends Component {
                     setQuery={this.setQuery}
                 />             */}
 
-                    <select>
-                        <option value="to-do">To-do</option>
-                        <option value="on going">Ongoing</option>
-                        {/* <option selected value="this.props.status">{this.props.status}</option> */}
-                        <option value="done">Done</option>
-                    </select>
+                    <Select value={this.props.status} options={this.state.allStatus}
+                        // {<option selected value="this.props.status">{this.props.status}</option>}
+                        onChange={this.props.statusChange} />
+
+                    <Select options={this.state.usersList} isMulti
+                        onChange={this.props.collabChange} />
                     <button type='submit'>Submit</button>
                 </form>
 

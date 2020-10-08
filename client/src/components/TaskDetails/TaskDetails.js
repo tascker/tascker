@@ -47,7 +47,7 @@ export default class TaskDetails extends Component {
         title: this.state.title,
         notes: this.state.notes,
         deadline: this.state.deadline,
-        // collaborators: this.state.collaborators,
+        collaborators: this.state.collaborators,
         status: this.state.status,
       })
       .then((response) => {
@@ -55,7 +55,7 @@ export default class TaskDetails extends Component {
           title: response.data.title,
           notes: response.data.notes,
           deadline: response.data.deadline,
-          //   collaborators: response.data.collaborators,
+          collaborators: response.data.collaborators,
           status: response.data.status,
           editForm: false
         });
@@ -97,6 +97,20 @@ export default class TaskDetails extends Component {
     });
   };
 
+  statusChange = (event) => {
+    // console.log(event)
+    this.setState({
+      status: event.name
+    })
+  }
+
+  collabChange = (event) => {
+    console.log(event)
+    this.setState({
+      collaborators: event.value
+    })
+  }
+
   render() {
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.task) return <p>Loading....</p>;
@@ -119,6 +133,8 @@ export default class TaskDetails extends Component {
             {...this.state}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
+            statusChange={this.statusChange}
+            collabChange={this.collabChange}
           />
         )}
       </div>
