@@ -1,9 +1,10 @@
 import React from "react";
+import { Form } from "react-bootstrap";
 
 export default function Search(props) {
   return (
-    <form onSubmit={props.submitHandler}>
-      <input
+    <Form onSubmit={props.submitHandler}>
+      <Form.Control
         type="text"
         name="search"
         id="search"
@@ -11,6 +12,6 @@ export default function Search(props) {
         onChange={props.searchHandler}
         placeholder="Search..."
       />
-    </form>
+    </Form>
   );
 }

@@ -5,12 +5,15 @@ import Home from "./components/Home/Home";
 // import Auth from "./components/Auth.js";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar/Navbar";
+
 import Tasks from "./components/Tasks/Tasks";
-import TaskList from "./components/TaskList/TaskList";
+// import TaskList from "./components/TaskList/TaskList";
 import CreateTask from "./components/CreateTask/CreateTask";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
 import Select from 'react-select'
+//UI framework
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 class App extends Component {
   state = {
@@ -52,7 +55,7 @@ class App extends Component {
     console.log("render", this.state.selectOptions)
     return (
       <div className="App">
-        <Navbar user={this.state.user} clearUser={this.setUser} />
+        {/* <Navbar user={this.state.user} clearUser={this.setUser} /> */}
         <Route exact path="/" component={Home} />
 
         <Route
@@ -60,35 +63,25 @@ class App extends Component {
           path="/signup"
           render={(props) => <Signup setUser={this.setUser} selectOption={this.state.selectOptions} {...props} />}
         />
-        <Route
-          exact
-          path="/login"
-          render={(props) => <Login setUser={this.setUser} {...props} />}
-        />
 
-        {/* <Route
-          exact
-          path="/signup"
-          render={(props) => {
-            if (this.state.user) {
-              return <TaskList {...props} user={this.state.user} />;
-            } else {
-              return <Redirect to="/" />;
-            }
-          }}
-        />
         <Route
           exact
           path="/login"
           render={(props) => <Login setUser={this.setUser} {...props} />}
-        /> */}
+        />
 
         <Route
           exact
           path="/dashboard"
           render={(props) => {
             if (this.state.user) {
-              return <Tasks {...props} user={this.state.user} />;
+              return (
+                <Tasks
+                  {...props}
+                  user={this.state.user}
+                  setUser={this.setUser}
+                />
+              );
             } else {
               return <Redirect to="/" />;
             }
@@ -101,12 +94,10 @@ class App extends Component {
           render={(props) => {
             if (this.state.user) {
               return <TaskDetails {...props} user={this.state.user} />;
-
             } else {
               return <Redirect to="/" />;
             }
-          }
-          }
+          }}
         />
 
         <Route

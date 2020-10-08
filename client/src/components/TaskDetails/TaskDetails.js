@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import EditTask from "../EditTask/EditTask";
+import Logout from "../Logout/Logout";
+import { Button, Container, Row, Col } from "react-bootstrap";
+import { Trash } from "react-bootstrap-icons";
 
 export default class TaskDetails extends Component {
   state = {
@@ -13,10 +16,6 @@ export default class TaskDetails extends Component {
     status: "",
     editForm: false,
   };
-
-  componentDidMount() {
-    this.getTaskFromDB();
-  }
 
   getTaskFromDB = () => {
     const id = this.props.match.params.id;
@@ -38,6 +37,26 @@ export default class TaskDetails extends Component {
       });
   };
 
+  deleteTask = () => {
+    const id = this.props.match.params.id;
+    axios
+      .delete(`/api/tasks/${id}`)
+      .then(() => {
+        this.props.history.push("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log("name,value", name, value);
+    this.setState({
+      [name]: value,
+    });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
     const id = this.props.match.params.id;
@@ -57,9 +76,9 @@ export default class TaskDetails extends Component {
           deadline: response.data.deadline,
           collaborators: response.data.collaborators,
           status: response.data.status,
-          editForm: false
+          editForm: false,
         });
-        console.log("done")
+        console.log("done");
         this.props.history.push("/dashboard");
       })
       .catch((error) => {
@@ -71,31 +90,15 @@ export default class TaskDetails extends Component {
       });
   };
 
-  deleteTask = () => {
-    const id = this.props.match.params.id;
-    axios
-      .delete(`/api/tasks/${id}`)
-      .then(() => {
-        this.props.history.push("/dashboard");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   toggleEditForm = () => {
     this.setState((state) => ({
       editForm: !state.editForm,
     }));
   };
 
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    console.log("name,value", name, value)
-    this.setState({
-      [name]: value,
-    });
-  };
+  componentDidMount() {
+    this.getTaskFromDB();
+  }
 
   statusChange = (event) => {
     // console.log(event)
@@ -115,29 +118,63 @@ export default class TaskDetails extends Component {
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.task) return <p>Loading....</p>;
     return (
-      <div>
-        <h2>{this.state.title}</h2>
-        <p>{this.state.notes}</p>
-        <p>{this.state.deadline}</p>
-        {this.state.collaborators.length > 0 && <p>Collaborators for this task:</p>}
-        <ul> {this.state.collaborators.map((collab) =>
-          <li> {collab.username} </li>
-        )}
-        </ul>
-        <p>{this.state.status}</p>
+      <Container>
+        <Row>
+          <Col
+            xs={2}
+            md={2}
+            style={{ backgroundColor: "#f4f5f6", height: "100vh" }}
+          ></Col>
+          <Col>
+            <Row>
+              <Logout user={this.props.user} clearUser={this.props.setUser} />
+            </Row>
+            <Row>
+              <Col>
+                <h2>{this.state.title}</h2>
+                <span>{this.state.status}</span>
+                <p>{this.state.notes}</p>
+                <p>{this.state.deadline}</p>
+                {this.state.collaborators.length > 0 && <h4>Collaborators</h4>}
+                <ul>
+                  {" "}
+                  {this.state.collaborators.map((collab) => (
+                    <li> {collab.username} </li>
+                  ))}
+                </ul>
 
-        <button onClick={this.deleteTask}>Delete</button>
-        <button onClick={this.toggleEditForm}>Edit Task</button>
-        {this.state.editForm && (
-          <EditTask
-            {...this.state}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            statusChange={this.statusChange}
-            collabChange={this.collabChange}
-          />
-        )}
-      </div>
+                <Button onClick={this.deleteTask} variant="danger">
+                  <Trash />
+                </Button>
+
+
+//         <button onClick={this.deleteTask}>Delete</button>
+//         <button onClick={this.toggleEditForm}>Edit Task</button>
+//         {this.state.editForm && (
+//           <EditTask
+//             {...this.state}
+//             handleChange={this.handleChange}
+//             handleSubmit={this.handleSubmit}
+//             statusChange={this.statusChange}
+//             collabChange={this.collabChange}
+//           />
+//         )}
+//       </div>
+                <Button onClick={this.toggleEditForm}>Edit Task</Button>
+              </Col>
+              <Col>
+                {this.state.editForm && (
+                  <EditTask
+                    {...this.state}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                  />
+                )}
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

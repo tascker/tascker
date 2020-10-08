@@ -88,7 +88,7 @@ export default class Signup extends Component {
   render() {
     console.log("in sign up", this.props.selectOption)
     return (
-      <>
+      <div className="auth">
         <h2>Signup</h2>
         <div className="authContainer login">
           <form onSubmit={this.handleSubmit}>
@@ -133,8 +133,8 @@ export default class Signup extends Component {
             <button type="submit">Signup</button>
           </form>
         </div>
-        {/* {this.state.error && <Alert>{this.state.error}</Alert>} */}
-      </>
+        {this.state.message && <p>{this.state.message}</p>}
+      </div>
     );
   }
 }
