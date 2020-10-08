@@ -7,6 +7,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { Alert, Button, Container, Row, Col } from "react-bootstrap";
 import { TrashFill } from "react-bootstrap-icons";
 
+
 export default class TaskDetails extends Component {
   state = {
     task: null,
@@ -155,11 +156,13 @@ export default class TaskDetails extends Component {
                   </span>
                 </h3>
                 <p>Deadline: {this.state.deadline}</p>
+
                 <div variant="secondary">
                   <h2 className="dashboard-heading">Notes</h2>
                   <hr />
                   <div className="notes-box">{this.state.notes}</div>
                 </div>
+
 
                 {this.state.collaborators.length > 0 && (
                   <h2 className="dashboard-heading">Collaborators</h2>

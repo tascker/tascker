@@ -19,8 +19,9 @@ export default class Tasks extends Component {
     notes: "",
     deadline: "",
     status: "",
-    pinned: false,
+    pinned: "",
     pinnedTasks: [],
+    collabTasks: []
   };
 
   componentDidMount() {
@@ -46,7 +47,15 @@ export default class Tasks extends Component {
           (res) => res.owner === userId._id && res.pinned
         );
 
+
+        let collabTasksArray = []
+        for (let i = 0; i < response.data.length; i++) {
+          if (response.data[i].collaborators.includes(userId._id) && !response.data[i].pinned)
+            collabTasksArray.push(response.data[i])
+        }
+
         this.setState({
+          collabTasks: collabTasksArray,
           tasks: filtered,
           pinnedTasks: pinnedTasks,
         });
@@ -95,16 +104,16 @@ export default class Tasks extends Component {
     });
   };
 
-  changePinned = (id) => {
-    let newPinnedValue = !this.state.pinned;
+  changePinned = (id, pinned) => {
+    // let newPinnedValue = !this.state.pinned;
     this.setState((state) => ({
-      pinned: newPinnedValue,
-    }));
-    console.log("pin", newPinnedValue, id);
+      pinned: pinned,
+    }), () => console.log(pinned, "newPinnedValue"));
+    console.log("pin", pinned, id);
 
     axios
       .patch(`/api/tasks/${id}`, {
-        pinned: newPinnedValue,
+        pinned: pinned,
       })
       .then((response) => {
         console.log("res in pin", response.data.pinned);
@@ -112,13 +121,19 @@ export default class Tasks extends Component {
           // project: response.data,
           status: response.data.pinned,
         });
-        //this.props.history.push("/dashboard");
+        // this.props.history.push("/dashboard");
         // window.location.reload()
+        this.getTasksFromDB();
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.pinned !== this.state.pinned) {
+  //   }
+  // }
 
   render() {
     return (
@@ -151,6 +166,7 @@ export default class Tasks extends Component {
                 <TaskList
                   tasks={this.state.tasks}
                   search={this.state.search}
+                  pinned={true}
                   changePinned={this.changePinned}
                 />
               </Col>
@@ -166,6 +182,7 @@ export default class Tasks extends Component {
                     <TaskList
                       tasks={this.state.pinnedTasks}
                       search={this.state.search}
+                      pinned={false}
                       changePinned={this.changePinned}
                     />
                   </Col>
@@ -178,9 +195,13 @@ export default class Tasks extends Component {
                   >
                     <h2 className="dashboard-heading">My collab tasks</h2>
                     <CollabTask
+                      collabTasks={this.state.collabTasks}
                       user={this.state.user}
                       search={this.state.search}
                       {...this.props}
+                      pinned={true}
+                      changePinned={this.changePinned}
+
                     />
                   </Col>
                 </Row>

@@ -24,13 +24,15 @@ export default function Tasklist(props) {
           >
             <h4>
               <span>
+
                 {task.status === "to-do" ? (
                   <span className="to-do">{task.status}</span>
-                ) : task.status === "on-going" ? (
+                ) : task.status === "on going" ? (
                   <span className="ongoing">{task.status}</span>
                 ) : (
                   <span className="done">{task.status}</span>
                 )}
+
               </span>
               <Link
                 to={`/tasks/${task._id}`}
@@ -41,6 +43,7 @@ export default function Tasklist(props) {
               </Link>
             </h4>
             <p>
+
               <Button
                 size="sm"
                 variant="outline-info"
