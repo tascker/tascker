@@ -71,11 +71,11 @@ export default class Login extends Component {
               <span>Login</span>
             </button>
             <p>
-              Don't have an account? <a href="/signup">Sign up</a>
+              Don't have an account? <a href="/signup">Signup</a>
             </p>
           </form>
         </div>
-        {this.state.message && <p>{this.state.message}</p>}
+        {this.state.message && <p className="alert">{this.state.message}</p>}
       </div>
     );
   }
