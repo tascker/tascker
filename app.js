@@ -15,7 +15,11 @@ const passport = require("passport");
 require("./configs/passport.js");
 
 mongoose
-  .connect("mongodb://localhost/tascker", { useNewUrlParser: true })
+  .connect(
+    process.env.MONGODB_URI ||
+      "mongodb+srv://new-user-001:6JpP1i4AbmUlbb0m@cluster0.uxncr.mongodb.net/tasckerdb?retryWrites=true&w=majority",
+    { useNewUrlParser: true }
+  )
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`

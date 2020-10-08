@@ -147,9 +147,9 @@ export default class TaskDetails extends Component {
             </Row>
             <Row>
               <Col style={{ height: "90vh" }}>
-                <h3 style={{ paddingTop: "15px" }}>
-                  {this.state.title}
-                  <span>
+                <h2 style={{ paddingTop: "15px" }}>
+                  {this.state.title}{" "}
+                  <span style={{ paddingRight: "10px" }}>
                     {this.state.status === "to-do" ? (
                       <span className="to-do">{this.state.status}</span>
                     ) : this.state.status === "on going" ? (
@@ -158,7 +158,7 @@ export default class TaskDetails extends Component {
                       <span className="done">{this.state.status}</span>
                     )}
                   </span>
-                </h3>
+                </h2>
                 <p>Deadline: {this.state.deadline}</p>
 
                 <div variant="secondary">
@@ -178,7 +178,6 @@ export default class TaskDetails extends Component {
                   ))}
                 </ul>
 
-
                 <button onClick={this.deleteTask} className="btn-outline">
                   <TrashFill />
                 </button>
@@ -186,7 +185,6 @@ export default class TaskDetails extends Component {
                 <button onClick={this.toggleEditForm} className="btn-logout">
                   Edit Task
                 </button>
-
               </Col>
               <Col style={{ backgroundColor: "#f4f5f6", height: "90vh" }}>
                 {this.state.editForm && (

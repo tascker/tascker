@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -25,7 +25,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #282c34;
 }
 
 .App-link:hover {
@@ -139,13 +139,11 @@
   transition: all 0.2s ease;
 }
 
-
 .btn-outline {
   border: 2px solid #3d128d;
   color: #3d128d;
   background-color: transparent;
 }
-
 
 .btn-signup {
   transition: all 0.2s ease;
@@ -229,25 +227,26 @@ h2.dashboard-heading {
 .to-do,
 .ongoing,
 .done {
-  padding: 8px;
-  border-radius: 50px;
+  padding: 6px 5px;
+  border-radius: 5px;
   font-weight: 800;
   color: #fff;
   font-size: 0.8rem;
   opacity: 0.9;
+  outline: none;
 }
 
 .to-do {
   /* border: 2px solid #fd6fff; */
-  background-color: #fd6fff;
-}
-
-.ongoing {
   background-color: #ffaa15;
 }
 
+.ongoing {
+  background-color: #00873d;
+}
+
 .done {
-  background-color: #00c781;
+  background-color: #cccccc;
 }
 
 .notes-box {
