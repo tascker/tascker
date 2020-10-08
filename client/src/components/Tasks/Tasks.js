@@ -57,31 +57,6 @@ export default class Tasks extends Component {
       });
   };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const id = this.props.match.params.id;
-  //   axios
-  //     .put(`/api/tasks/${id}`, {
-  //       title: this.state.title,
-  //       notes: this.state.notes,
-  //       deadline: this.state.deadline,
-  //       status: this.state.status,
-  //       pinned: this.state.pinned,
-  //     })
-  //     .then((response) => {
-  //       this.setState({
-  //         project: response.data,
-  //         title: response.data.title,
-  //         notes: response.data.notes,
-  //         deadline: response.data.deadline,
-  //         status: this.state.status,
-  //         pinned: this.state.pinned,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
 
   submitHandler = (event) => {
     event.preventDefault();
@@ -113,7 +88,7 @@ export default class Tasks extends Component {
           // project: response.data,
           status: response.data.pinned,
         });
-        // this.props.history.push("/dashboard");
+        //this.props.history.push("/dashboard");
         // window.location.reload()
       })
       .catch((error) => {
