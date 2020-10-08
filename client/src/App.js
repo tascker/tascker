@@ -10,13 +10,35 @@ import Tasks from "./components/Tasks/Tasks";
 // import TaskList from "./components/TaskList/TaskList";
 import CreateTask from "./components/CreateTask/CreateTask";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
+import Select from 'react-select'
 //UI framework
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 class App extends Component {
   state = {
     user: this.props.user,
+    selectOptions: [],
+    options: [
+      { name: "Business Operations", label: "Business Operations" },
+      { name: "HR", label: "HR" },
+      { name: "Marketing & Sales", label: "Marketing & Sales" },
+      { name: "Finance", label: "Finance" },
+      { name: "IT", label: "IT" },
+      { name: "Software", label: "Software" },
+    ],
+
   };
+
+  getOptions() {
+    const res = this.state.options
+
+    const options = res.map(d => ({
+      "value": d.value,
+      "label": d.label
+    }))
+    this.setState({ selectOptions: options })
+  }
 
   setUser = (user) => {
     this.setState({
@@ -24,7 +46,13 @@ class App extends Component {
     });
   };
 
+  componentDidMount() {
+    this.getOptions()
+  }
+
+
   render() {
+    console.log("render", this.state.selectOptions)
     return (
       <div className="App">
         {/* <Navbar user={this.state.user} clearUser={this.setUser} /> */}
@@ -33,7 +61,7 @@ class App extends Component {
         <Route
           exact
           path="/signup"
-          render={(props) => <Signup setUser={this.setUser} {...props} />}
+          render={(props) => <Signup setUser={this.setUser} selectOption={this.state.selectOptions} {...props} />}
         />
 
         <Route

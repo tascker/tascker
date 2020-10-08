@@ -66,7 +66,8 @@ export default class TaskDetails extends Component {
         title: this.state.title,
         notes: this.state.notes,
         deadline: this.state.deadline,
-        // collaborators: this.state.collaborators,
+        collaborators: this.state.collaborators,
+        status: this.state.status,
       })
       .then((response) => {
         this.setState({
@@ -97,6 +98,20 @@ export default class TaskDetails extends Component {
 
   componentDidMount() {
     this.getTaskFromDB();
+  }
+
+  statusChange = (event) => {
+    // console.log(event)
+    this.setState({
+      status: event.name
+    })
+  }
+
+  collabChange = (event) => {
+    console.log(event)
+    this.setState({
+      collaborators: event.value
+    })
   }
 
   render() {
@@ -132,6 +147,19 @@ export default class TaskDetails extends Component {
                   <Trash />
                 </Button>
 
+
+//         <button onClick={this.deleteTask}>Delete</button>
+//         <button onClick={this.toggleEditForm}>Edit Task</button>
+//         {this.state.editForm && (
+//           <EditTask
+//             {...this.state}
+//             handleChange={this.handleChange}
+//             handleSubmit={this.handleSubmit}
+//             statusChange={this.statusChange}
+//             collabChange={this.collabChange}
+//           />
+//         )}
+//       </div>
                 <Button onClick={this.toggleEditForm}>Edit Task</Button>
               </Col>
               <Col>
