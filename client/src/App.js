@@ -27,7 +27,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <Navbar user={this.state.user} clearUser={this.setUser} /> */}
         <Route exact path="/" component={Home} />
 
         <Route

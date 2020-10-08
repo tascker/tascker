@@ -17,6 +17,8 @@ export default class EditTask extends Component {
 
           <Form.Label htmlFor="notes">Notes</Form.Label>
           <Form.Control
+            as="textarea"
+            rows="3"
             type="text"
             name="notes"
             value={this.props.notes}

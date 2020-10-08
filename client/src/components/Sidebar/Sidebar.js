@@ -1,23 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, Col } from "react-bootstrap";
 import { logout } from "../../services/auth";
 
 import logo from "../../img/logo1.png";
 
 export default function Sidebar(props) {
-  const logoutHandler = (props) => {
-    logout().then(() => {
-      props.clearUser(null);
-    });
-  };
-
   return (
-    <div className="sidebar">
+    <Col
+      xs={2}
+      md={2}
+      style={{
+        backgroundColor: "#3D1B8B",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column-reverse",
+        alignItems: "center",
+        paddingBottom: "5vh",
+      }}
+    >
       <Link to="/dashboard" className="nav">
-        <span role="img" aria-label="Home">
-          🏠
-        </span>
+        <Button>Dashboard</Button>
       </Link>
-    </div>
+      <Link to="/create-task">
+        <Button>Add a new Task</Button>
+      </Link>
+    </Col>
   );
 }
