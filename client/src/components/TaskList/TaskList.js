@@ -24,13 +24,15 @@ export default function Tasklist(props) {
           >
             <h4>
               <span>
-                <Button
-                  size="sm"
-                  variant="outline-info"
-                  onClick={() => props.changePinned(task._id, props.pinned)}
-                >
-                  <BookmarkStarFill />
-                </Button>
+
+                {task.status === "to-do" ? (
+                  <span className="to-do">{task.status}</span>
+                ) : task.status === "on going" ? (
+                  <span className="ongoing">{task.status}</span>
+                ) : (
+                  <span className="done">{task.status}</span>
+                )}
+
               </span>
               <Link
                 to={`/tasks/${task._id}`}
@@ -41,13 +43,14 @@ export default function Tasklist(props) {
               </Link>
             </h4>
             <p>
-              {task.status === "to-do" ? (
-                <span style={{ backgroundColor: "green" }}>{task.status}</span>
-              ) : task.status === "on-going" ? (
-                <span style={{ backgroundColor: "yellow" }}>{task.status}</span>
-              ) : (
-                    <span style={{ backgroundColor: "red" }}>{task.status}</span>
-                  )}
+
+              <Button
+                size="sm"
+                variant="outline-info"
+                onClick={() => props.changePinned(task._id)}
+              >
+                <BookmarkStarFill />
+              </Button>
             </p>
           </div>
         );

@@ -8,8 +8,8 @@ import logo from "../../img/logo1.png";
 export default function Sidebar(props) {
   return (
     <Col
-      xs={2}
-      md={2}
+      xs={1}
+      md={1}
       style={{
         backgroundColor: "#3D1B8B",
         height: "100vh",
@@ -20,12 +20,14 @@ export default function Sidebar(props) {
         padding: "1%",
       }}
     >
-      <h1 style={{ color: "white", fontWeight: "bold" }}>tascker.</h1>
       <Link to="/dashboard" className="nav">
-        <Button>Dashboard</Button>
+        <h4 style={{ color: "white", fontWeight: "bold" }}>tascker.</h4>
       </Link>
+      {/* <Link to="/dashboard" className="nav">
+        <Button>Dashboard</Button>
+      </Link> */}
       <Link to="/create-task">
-        <Button>Add a new Task</Button>
+        <button className="btn-add">Add Task</button>
       </Link>
     </Col>
   );

@@ -7,7 +7,7 @@ const TaskSchema = new Schema(
     deadline: Date,
     status: {
       type: String,
-      enum: ["to-do", "on going", "done"],
+      enum: ["to-do", "on going", "done 🙌🏽"],
       default: "to-do",
     },
     owner: {
@@ -22,7 +22,7 @@ const TaskSchema = new Schema(
     ],
     pinned: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
   { timestamps: true }

@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import EditTask from "../EditTask/EditTask";
 import Logout from "../Logout/Logout";
+import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import { Alert, Button, Container, Row, Col } from "react-bootstrap";
-import { Trash } from "react-bootstrap-icons";
+import { TrashFill } from "react-bootstrap-icons";
 
 
 export default class TaskDetails extends Component {
@@ -128,29 +129,62 @@ export default class TaskDetails extends Component {
               <Logout user={this.props.user} clearUser={this.props.setUser} />
             </Row>
             <Row>
+              <Col
+                style={{
+                  height: "7vh",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "#f4f5f6",
+                  borderBottom: "1px solid #d0d0d0",
+                }}
+              >
+                <Link to="/dashboard">← Dashboard</Link>
+              </Col>
+            </Row>
+            <Row>
               <Col style={{ height: "90vh" }}>
-                <h2>
-                  {this.state.title} <span>{this.state.status}</span>
-                </h2>
+                <h3 style={{ paddingTop: "15px" }}>
+                  {this.state.title}
+                  <span>
+                    {this.state.status === "to-do" ? (
+                      <span className="to-do">{this.state.status}</span>
+                    ) : this.state.status === "on going" ? (
+                      <span className="ongoing">{this.state.status}</span>
+                    ) : (
+                      <span className="done">{this.state.status}</span>
+                    )}
+                  </span>
+                </h3>
                 <p>Deadline: {this.state.deadline}</p>
-                <Alert variant="secondary">
-                  <Alert.Heading>Notes</Alert.Heading>
-                  <p>{this.state.notes}</p>
-                </Alert>
 
-                {this.state.collaborators.length > 0 && <h4>Collaborators</h4>}
+                <div variant="secondary">
+                  <h2 className="dashboard-heading">Notes</h2>
+                  <hr />
+                  <div className="notes-box">{this.state.notes}</div>
+                </div>
+
+
+                {this.state.collaborators.length > 0 && (
+                  <h2 className="dashboard-heading">Collaborators</h2>
+                )}
+                <hr />
                 <ul>
                   {this.state.collaborators.map((collab) => (
                     <li> {collab.username} </li>
                   ))}
                 </ul>
 
-                <Button onClick={this.deleteTask} variant="danger">
-                  <Trash />
-                </Button>
-                <Button onClick={this.toggleEditForm}>Edit Task</Button>
+
+                <button onClick={this.deleteTask} className="btn-outline">
+                  <TrashFill />
+                </button>
+
+                <button onClick={this.toggleEditForm} className="btn-logout">
+                  Edit Task
+                </button>
+
               </Col>
-              <Col style={{ backgroundColor: "#F8F8F8", height: "90vh" }}>
+              <Col style={{ backgroundColor: "#f4f5f6", height: "90vh" }}>
                 {this.state.editForm && (
                   <EditTask
                     {...this.state}

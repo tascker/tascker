@@ -57,7 +57,7 @@ export default class CreateTask extends Component {
 
   render() {
     return (
-      <Container>
+      <Container fluid>
         <Row>
           <Sidebar user={this.props.user} clearUser={this.props.setUser} />
           <Col>
