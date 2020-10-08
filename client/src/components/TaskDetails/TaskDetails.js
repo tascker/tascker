@@ -3,13 +3,11 @@ import axios from "axios";
 import EditTask from "../EditTask/EditTask";
 import Logout from "../Logout/Logout";
 
-
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 
 import { Alert, Button, Container, Row, Col } from "react-bootstrap";
 import { TrashFill } from "react-bootstrap-icons";
-
 
 export default class TaskDetails extends Component {
   state = {
@@ -115,16 +113,15 @@ export default class TaskDetails extends Component {
 
   collabChange = (event) => {
     console.log(event[0].value, "event");
-    event.map(eve => {
-
+    event.map((eve) => {
       this.setState({
         collaborators: [...this.state.collaborators, eve.value],
-      })
-    })
+      });
+    });
   };
 
   render() {
-    console.log(this.state.collaborators)
+    console.log(this.state.collaborators);
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.task) return <p>Loading....</p>;
     return (
@@ -170,14 +167,13 @@ export default class TaskDetails extends Component {
                   <div className="notes-box">{this.state.notes}</div>
                 </div>
 
-
                 {this.state.collaborators.length > 0 && (
                   <h2 className="dashboard-heading">Collaborators</h2>
                 )}
                 <hr />
                 <ul>
                   {this.state.collaborators.map((collab) => (
-                    <li key={collab._id}>{collab.username}  </li>
+                    <li key={collab._id}>{collab.username} </li>
                   ))}
                 </ul>
 
