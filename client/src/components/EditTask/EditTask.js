@@ -14,20 +14,6 @@ export default class EditTask extends Component {
     usersList: [],
   };
 
-  getOptions() {
-    const res = this.state.allStatus;
-
-    const options = res.map((d) => ({
-      value: d.name,
-      label: d.label,
-    }));
-    this.setState({ status: options.value });
-  }
-  componentDidMount() {
-    this.getOptions();
-    this.getUsersFromDB();
-  }
-
   getUsersFromDB = () => {
     axios.get("/api/user").then((response) => {
       //   console.log("user", response.data)
@@ -46,10 +32,10 @@ export default class EditTask extends Component {
     console.log(this.props.status);
     return (
       <>
-        <h3>Edit the task</h3>
+        <h2>Edit the task</h2>
         <Form onSubmit={this.props.handleSubmit}>
-          <Form.Label htmlFor="title">Title</Form.Label>
-          <Form.Control
+          <label htmlFor="title">Title</label>
+          <input
             type="text"
             name="title"
             value={this.props.title}
