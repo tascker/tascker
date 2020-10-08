@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CollabSelect from "../CollabSelect/CollabSelect";
 import axios from "axios";
+import Sidebar from "../Sidebar/Sidebar";
 import { Button, Container, Row, Col, Form } from "react-bootstrap";
 
 export default class CreateTask extends Component {
@@ -58,11 +59,7 @@ export default class CreateTask extends Component {
     return (
       <Container>
         <Row>
-          <Col
-            xs={2}
-            md={2}
-            style={{ backgroundColor: "#f4f5f6", height: "100vh" }}
-          ></Col>
+          <Sidebar user={this.props.user} clearUser={this.props.setUser} />
           <Col>
             <h1>Create a task</h1>
             <Form onSubmit={this.submitHandler}>

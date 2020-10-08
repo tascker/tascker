@@ -57,6 +57,7 @@ export default class EditTask extends Component {
                         onChange={this.props.handleChange}
                     />
 
+
                     <Form.Label htmlFor="notes">Notes</Form.Label>
                     <Form.Control
                         type="text"
@@ -65,6 +66,7 @@ export default class EditTask extends Component {
                         onChange={this.props.handleChange}
                     />
 
+
                     <Form.Label htmlFor="deadline">Deadline</Form.Label>
                     <Form.Control
                         type="date"
@@ -72,11 +74,6 @@ export default class EditTask extends Component {
                         value={this.props.deadline}
                         onChange={this.props.handleChange}
                     />
-
-                    {/* <label htmlFor="collaborators">Collaborators</label>
-                <CollabSelect
-                    setQuery={this.setQuery}
-                />             */}
 
                     <Form.Label htmlFor="status">Status</Form.Label>
                     <Select value={this.props.status} options={this.state.allStatus}
