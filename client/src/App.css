@@ -1,5 +1,5 @@
 .App {
-  /* text-align: center; */
+  text-align: center;
 }
 
 .App-logo {
@@ -139,6 +139,7 @@
   transition: all 0.2s ease;
 }
 
+
 .btn-outline {
   border: 2px solid #3d128d;
   color: #3d128d;
@@ -148,7 +149,7 @@
 /*
 .btn-signup {
   transition: all 0.2s ease;
-  font-family: "Nunito", sans-serif;
+  /* font-family: "Nunito", sans-serif; */
   font-size: 1rem;
   font-weight: 800;
   padding: 1rem 3rem 1rem 3rem;
@@ -159,22 +160,64 @@
   background-color: #3d128d;
   color: #fff;
   outline: none;
-  min-width: 15rem;
+  /* min-width: 15rem; */
   margin: 2rem 0 3rem 0;
 }
 
 .btn-signup:hover {
   background-color: #b4b6ff;
   border-radius: 1rem;
-} */
+}
 
-.auth {
+.login-form {
+  background-image: url("../src/img/signup.jpg");
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+  color: black;
+}
+.login-form .login-container {
+  padding-top: 10vh;
+  padding-left: 0vw;
+  margin: 0;
+}
+.login-form .input {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid indigo;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 25px;
+  transition: 0.5s;
+}
+.login-form .input:focus {
+  width: 280px;
+  border-color: indigo;
+}
+
+.department {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  width: 400px;
+}
+
+#form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
+}
+
+#alert {
+  color: red;
 }
 
 h2.dashboard-heading {

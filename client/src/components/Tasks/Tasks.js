@@ -112,7 +112,7 @@ export default class Tasks extends Component {
           // project: response.data,
           status: response.data.pinned,
         });
-        // this.props.history.push("/dashboard");
+        //this.props.history.push("/dashboard");
         // window.location.reload()
       })
       .catch((error) => {

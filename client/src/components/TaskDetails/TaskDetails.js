@@ -171,6 +171,7 @@ export default class TaskDetails extends Component {
                   ))}
                 </ul>
 
+
                 <button onClick={this.deleteTask} className="btn-outline">
                   <TrashFill />
                 </button>
@@ -178,6 +179,7 @@ export default class TaskDetails extends Component {
                 <button onClick={this.toggleEditForm} className="btn-logout">
                   Edit Task
                 </button>
+
               </Col>
               <Col style={{ backgroundColor: "#f4f5f6", height: "90vh" }}>
                 {this.state.editForm && (
