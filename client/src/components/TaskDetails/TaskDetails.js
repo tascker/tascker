@@ -4,6 +4,7 @@ import EditTask from "../EditTask/EditTask";
 import Logout from "../Logout/Logout";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
+import Sidebar from "../Sidebar/Sidebar";
 
 export default class TaskDetails extends Component {
   state = {
@@ -118,13 +119,9 @@ export default class TaskDetails extends Component {
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.task) return <p>Loading....</p>;
     return (
-      <Container>
+      <Container fluid>
         <Row>
-          <Col
-            xs={2}
-            md={2}
-            style={{ backgroundColor: "#f4f5f6", height: "100vh" }}
-          ></Col>
+          <Sidebar user={this.props.user} clearUser={this.props.setUser} />
           <Col>
             <Row>
               <Logout user={this.props.user} clearUser={this.props.setUser} />
@@ -137,7 +134,6 @@ export default class TaskDetails extends Component {
                 <p>{this.state.deadline}</p>
                 {this.state.collaborators.length > 0 && <h4>Collaborators</h4>}
                 <ul>
-                  {" "}
                   {this.state.collaborators.map((collab) => (
                     <li> {collab.username} </li>
                   ))}
@@ -148,26 +144,15 @@ export default class TaskDetails extends Component {
                 </Button>
 
 
-//         <button onClick={this.deleteTask}>Delete</button>
-//         <button onClick={this.toggleEditForm}>Edit Task</button>
-//         {this.state.editForm && (
-//           <EditTask
-//             {...this.state}
-//             handleChange={this.handleChange}
-//             handleSubmit={this.handleSubmit}
-//             statusChange={this.statusChange}
-//             collabChange={this.collabChange}
-//           />
-//         )}
-//       </div>
+                <Button onClick={this.deleteTask}>Delete</Button>
                 <Button onClick={this.toggleEditForm}>Edit Task</Button>
-              </Col>
-              <Col>
                 {this.state.editForm && (
                   <EditTask
                     {...this.state}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
+                    statusChange={this.statusChange}
+                    collabChange={this.collabChange}
                   />
                 )}
               </Col>
