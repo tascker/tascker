@@ -7,6 +7,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { Alert, Button, Container, Row, Col } from "react-bootstrap";
 import { TrashFill } from "react-bootstrap-icons";
 
+
 export default class TaskDetails extends Component {
   state = {
     task: null,
@@ -93,9 +94,9 @@ export default class TaskDetails extends Component {
   };
 
   toggleEditForm = () => {
-    this.setState((state) => ({
-      editForm: !state.editForm,
-    }));
+    this.setState({
+      editForm: !this.state.editForm,
+    });
   };
 
   componentDidMount() {
@@ -110,13 +111,17 @@ export default class TaskDetails extends Component {
   };
 
   collabChange = (event) => {
-    console.log(event);
-    this.setState({
-      collaborators: event.value,
-    });
+    console.log(event[0].value, "event");
+    event.map(eve => {
+
+      this.setState({
+        collaborators: [...this.state.collaborators, eve.value],
+      })
+    })
   };
 
   render() {
+    console.log(this.state.collaborators)
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.task) return <p>Loading....</p>;
     return (
@@ -155,11 +160,13 @@ export default class TaskDetails extends Component {
                   </span>
                 </h2>
                 <p>Deadline: {this.state.deadline}</p>
+
                 <div variant="secondary">
                   <h2 className="dashboard-heading">Notes</h2>
                   <hr />
                   <div className="notes-box">{this.state.notes}</div>
                 </div>
+
 
                 {this.state.collaborators.length > 0 && (
                   <h2 className="dashboard-heading">Collaborators</h2>
@@ -167,7 +174,7 @@ export default class TaskDetails extends Component {
                 <hr />
                 <ul>
                   {this.state.collaborators.map((collab) => (
-                    <li> {collab.username} </li>
+                    <li key={collab._id}>{collab.username}  </li>
                   ))}
                 </ul>
 

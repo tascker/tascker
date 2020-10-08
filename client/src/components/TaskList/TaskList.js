@@ -43,7 +43,7 @@ export default function Tasklist(props) {
               <Button
                 size="sm"
                 variant="outline-info"
-                onClick={() => props.changePinned(task._id)}
+                onClick={() => props.changePinned(task._id, props.pinned)}
               >
                 Pin
               </Button>
