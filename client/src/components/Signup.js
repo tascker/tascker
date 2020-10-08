@@ -75,47 +75,74 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div className="auth">
-        <h2>Signup</h2>
-        <div className="authContainer login">
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleChange}
-              id="username"
-            />
+      <div className="login-form">
+        <div className="login-container">
+          <h2 style={{ fontWeight: "bold" }}>signup</h2>
+          <br></br>
 
-            <label htmlFor="email">email</label>
-            <input
-              type="text"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              id="email"
-            />
+          <form onSubmit={this.handleSubmit} id="form-container">
+            <div className="input-container">
+              <label htmlFor="username"></label>
+              <input
+                className="input"
+                type="text"
+                name="username"
+                placeholder="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                id="username"
+              />
+            </div>
 
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              id="password"
-            />
+            <div className="input-container">
+              <label htmlFor="email"></label>
+              <input
+                className="input"
+                type="text"
+                name="email"
+                placeholder="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                id="email"
+              />
+            </div>
 
-            <label htmlFor="department">Department</label>
-            <DeptSelect
-              options={this.state.options}
-              setQuery={this.setQuery}
-              department={this.state.department}
-            />
-            <button type="submit">Signup</button>
+            <div className="input-container">
+              <label htmlFor="password"></label>
+              <input
+                className="input"
+                type="password"
+                name="password"
+                placeholder="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                id="password"
+              />
+            </div>
+
+            <div className="department">
+              <div>
+                <label htmlFor="department"></label>
+                <DeptSelect
+                  // className="input"
+                  // style={{ width: "40vw" }}
+                  options={this.state.options}
+                  setQuery={this.setQuery}
+                  department={this.state.department}
+                />
+              </div>
+            </div>
+
+            <button className="btn-signup" type="submit">
+              Signup
+            </button>
+
+            <p class="account-message">
+              Already have an account? <a href="/login">Login</a>
+            </p>
           </form>
         </div>
-        {this.state.message && <p>{this.state.message}</p>}
+        {this.state.message && <p className="alert">{this.state.message}</p>}
       </div>
     );
   }

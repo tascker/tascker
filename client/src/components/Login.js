@@ -33,35 +33,45 @@ export default class Login extends Component {
   };
   render() {
     return (
-      <div className="auth">
-        <div class="login-container">
-          <h2>login</h2>
+      <div style={{ backgroundColor: "#f9fafc" }} className="login-form">
+        <div className="login-container">
+          <h2 style={{ fontWeight: "bold" }}>login</h2>
+          <br></br>
 
           <form onSubmit={this.handleSubmit} id="form-container">
-            <div class="input-container">
-              <label htmlFor="username">Username: </label>
+            <div className="input-container">
+              <label htmlFor="username"></label>
               <input
+                className="input"
                 type="text"
                 name="username"
+                placeholder="username"
                 value={this.state.username}
                 onChange={this.handleChange}
                 id="username"
               />
             </div>
 
-            <div class="input-container">
-              <label htmlFor="password">Password: </label>
+            <div className="input-container">
+              <label htmlFor="password"></label>
               <input
+                className="input"
                 type="password"
                 name="password"
+                placeholder="password"
                 value={this.state.password}
                 onChange={this.handleChange}
                 id="password"
               />
             </div>
 
-            <p class="account-message">
-              Not registered yet? <a href="/signup">Signup</a>
+            <div className="errormsg"></div>
+            <br></br>
+            <button className="btn-signup">
+              <span>Login</span>
+            </button>
+            <p>
+              Don't have an account? <a href="/signup">Sign up</a>
             </p>
           </form>
         </div>

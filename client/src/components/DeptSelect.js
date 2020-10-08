@@ -9,8 +9,9 @@ export default class DeptSelect extends Component {
 
   render() {
     return (
-      <div>
+      <div className="input-container">
         <Select
+          placeholder="department"
           onChange={this.handleChange}
           options={this.props.options}
         ></Select>
