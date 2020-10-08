@@ -153,7 +153,7 @@ export default class TaskDetails extends Component {
                   <Trash />
                 </Button>
 
-                <Button onClick={this.toggleEditForm}>Edit Task</Button>
+                <Button onClick={this.toggleEditForm}>Edit</Button>
               </Col>
               <Col style={{ backgroundColor: "#F8F8F8", height: "90vh" }}>
                 {this.state.editForm && (

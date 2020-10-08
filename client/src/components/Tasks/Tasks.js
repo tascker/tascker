@@ -10,7 +10,6 @@ import Logout from "../Logout/Logout";
 
 import EditTask from "../EditTask/EditTask";
 
-
 export default class Tasks extends Component {
   state = {
     search: "",
@@ -57,32 +56,6 @@ export default class Tasks extends Component {
       });
   };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const id = this.props.match.params.id;
-  //   axios
-  //     .put(`/api/tasks/${id}`, {
-  //       title: this.state.title,
-  //       notes: this.state.notes,
-  //       deadline: this.state.deadline,
-  //       status: this.state.status,
-  //       pinned: this.state.pinned,
-  //     })
-  //     .then((response) => {
-  //       this.setState({
-  //         project: response.data,
-  //         title: response.data.title,
-  //         notes: response.data.notes,
-  //         deadline: response.data.deadline,
-  //         status: this.state.status,
-  //         pinned: this.state.pinned,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   submitHandler = (event) => {
     event.preventDefault();
   };
@@ -99,9 +72,9 @@ export default class Tasks extends Component {
   changePinned = (id) => {
     let newPinnedValue = !this.state.pinned;
     this.setState((state) => ({
-      pinned: newPinnedValue
-    }))
-    console.log("pin", newPinnedValue, id)
+      pinned: newPinnedValue,
+    }));
+    console.log("pin", newPinnedValue, id);
 
     axios
       .patch(`/api/tasks/${id}`, {

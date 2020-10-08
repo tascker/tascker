@@ -14,11 +14,13 @@ export default function Sidebar(props) {
         backgroundColor: "#3D1B8B",
         height: "100vh",
         display: "flex",
-        flexDirection: "column-reverse",
+        flexDirection: "column",
+        justifyContent: "space-between",
         alignItems: "center",
-        paddingBottom: "5vh",
+        padding: "1%",
       }}
     >
+      <h1 style={{ color: "white", fontWeight: "bold" }}>tascker.</h1>
       <Link to="/dashboard" className="nav">
         <Button>Dashboard</Button>
       </Link>
