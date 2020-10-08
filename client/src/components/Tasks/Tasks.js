@@ -10,7 +10,6 @@ import Logout from "../Logout/Logout";
 
 import EditTask from "../EditTask/EditTask";
 
-
 export default class Tasks extends Component {
   state = {
     search: "",
@@ -57,7 +56,6 @@ export default class Tasks extends Component {
       });
   };
 
-
   submitHandler = (event) => {
     event.preventDefault();
   };
@@ -74,9 +72,9 @@ export default class Tasks extends Component {
   changePinned = (id) => {
     let newPinnedValue = !this.state.pinned;
     this.setState((state) => ({
-      pinned: newPinnedValue
-    }))
-    console.log("pin", newPinnedValue, id)
+      pinned: newPinnedValue,
+    }));
+    console.log("pin", newPinnedValue, id);
 
     axios
       .patch(`/api/tasks/${id}`, {
@@ -98,25 +96,9 @@ export default class Tasks extends Component {
 
   render() {
     return (
-      <Container>
-        <Sidebar user={this.props.user} clearUser={this.props.setUser} />
+      <Container fluid>
         <Row>
-          <Col
-            xs={2}
-            md={2}
-            style={{
-              backgroundColor: "#f4f5f6",
-              height: "100vh",
-              display: "flex",
-              flexDirection: "column-reverse",
-              alignItems: "center",
-              paddingBottom: "5vh",
-            }}
-          >
-            <Link to="/create-task">
-              <Button>Add a new Task</Button>
-            </Link>
-          </Col>
+          <Sidebar user={this.props.user} clearUser={this.props.setUser} />
           <Col>
             <Row>
               <Logout user={this.props.user} clearUser={this.props.setUser} />
@@ -135,7 +117,7 @@ export default class Tasks extends Component {
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col style={{ backgrounColor: "#EDEDED" }}>
                 <h2>My Tasks</h2>
                 <TaskList
                   tasks={this.state.tasks}

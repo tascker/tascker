@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import EditTask from "../EditTask/EditTask";
 import Logout from "../Logout/Logout";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import Sidebar from "../Sidebar/Sidebar";
+import { Alert, Button, Container, Row, Col } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import Sidebar from "../Sidebar/Sidebar";
 
@@ -104,16 +105,16 @@ export default class TaskDetails extends Component {
   statusChange = (event) => {
     // console.log(event)
     this.setState({
-      status: event.name
-    })
-  }
+      status: event.name,
+    });
+  };
 
   collabChange = (event) => {
-    console.log(event)
+    console.log(event);
     this.setState({
-      collaborators: event.value
-    })
-  }
+      collaborators: event.value,
+    });
+  };
 
   render() {
     if (this.state.error) return <div>{this.state.error}</div>;
@@ -127,11 +128,21 @@ export default class TaskDetails extends Component {
               <Logout user={this.props.user} clearUser={this.props.setUser} />
             </Row>
             <Row>
-              <Col>
-                <h2>{this.state.title}</h2>
-                <span>{this.state.status}</span>
-                <p>{this.state.notes}</p>
-                <p>{this.state.deadline}</p>
+              <Col style={{ height: "90vh" }}>
+                <h2>
+                  {this.state.title} <span>{this.state.status}</span>
+                </h2>
+                <p>Deadline: {this.state.deadline}</p>
+                <Alert variant="secondary">
+                  <Alert.Heading>Notes</Alert.Heading>
+                  <p>{this.state.notes}</p>
+                  <hr />
+                  <p className="mb-0">
+                    Whenever you need to, be sure to use margin utilities to
+                    keep things nice and tidy.
+                  </p>
+                </Alert>
+
                 {this.state.collaborators.length > 0 && <h4>Collaborators</h4>}
                 <ul>
                   {this.state.collaborators.map((collab) => (
