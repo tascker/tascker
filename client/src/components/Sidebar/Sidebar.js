@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Col } from "react-bootstrap";
 import { logout } from "../../services/auth";
-
+// import { Cart } from "grommet-icons";
 import logo from "../../img/logo1.png";
 
 export default function Sidebar(props) {

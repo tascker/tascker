@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { signup } from "../services/auth";
 import DeptSelect from "./DeptSelect";
 // import Alert from "@material-ui/lab/Alert";
+import Select from 'react-select'
 
 export default class Signup extends Component {
   state = {
@@ -18,8 +19,12 @@ export default class Signup extends Component {
       { name: "IT", label: "IT" },
       { name: "Software", label: "Software" },
     ],
+    name: "",
+    label: "",
     error: "",
+    //  selectOptions : [],    //added now
   };
+
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -71,11 +76,19 @@ export default class Signup extends Component {
     this.setState({
       department: query,
     });
+    console.log("in query", query)
   };
 
+  selectChange = (event) => {
+    console.log("event", event.value);
+    this.setQuery(event.value);
+  };
+
+
   render() {
+    console.log("in sign up", this.props.selectOption)
     return (
-      <>
+      <div className="auth">
         <h2>Signup</h2>
         <div className="authContainer login">
           <form onSubmit={this.handleSubmit}>
@@ -106,17 +119,22 @@ export default class Signup extends Component {
               id="password"
             />
 
-            <label htmlFor="department">Department</label>
+            {/* <label htmlFor="department">Department</label>
             <DeptSelect
               options={this.state.options}
+              // <Select options={this.state.selectOptions} />
               setQuery={this.setQuery}
               department={this.state.department}
-            />
+            /> */}
+
+            <Select options={this.props.selectOption} onChange={this.selectChange} department={this.state.department} />
+            <p>{this.state.department}</p>
+
             <button type="submit">Signup</button>
           </form>
         </div>
         {this.state.message && <p>{this.state.message}</p>}
-      </>
+      </div>
     );
   }
 }
