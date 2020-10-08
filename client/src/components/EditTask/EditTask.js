@@ -84,7 +84,7 @@ export default class EditTask extends Component {
                     <Select
                         options={this.state.usersList}
                         isMulti
-                        onChange={this.props.collabChange}
+                        onChange={(e) => this.props.collabChange(e)}
                     />
                     <Button type="submit">Submit</Button>
                 </Form>
