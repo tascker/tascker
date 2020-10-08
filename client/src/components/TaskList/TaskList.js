@@ -27,7 +27,7 @@ export default function Tasklist(props) {
                 <Button
                   size="sm"
                   variant="outline-info"
-                  onClick={() => props.changePinned(task._id)}
+                  onClick={() => props.changePinned(task._id, props.pinned)}
                 >
                   <BookmarkStarFill />
                 </Button>
@@ -46,8 +46,8 @@ export default function Tasklist(props) {
               ) : task.status === "on-going" ? (
                 <span style={{ backgroundColor: "yellow" }}>{task.status}</span>
               ) : (
-                <span style={{ backgroundColor: "red" }}>{task.status}</span>
-              )}
+                    <span style={{ backgroundColor: "red" }}>{task.status}</span>
+                  )}
             </p>
           </div>
         );

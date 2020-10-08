@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { Form } from "react-bootstrap";
 
 export default class CollabSelect extends React.Component {
   state = {
@@ -29,17 +28,19 @@ export default class CollabSelect extends React.Component {
         value.push(options[i].value);
       }
     }
-    // console.log("selected", value)
     this.props.setQuery(value);
   };
-
+  // <Link
+  //               to={`/tasks/${task._id}`}
+  //               style={{ textDecoration: "none" }}
+  //             >
+  //               {" "}
+  //               {task.title}
+  //             </Link>
   render() {
     return (
       <>
-        <Form.Control
-          as="select"
-          htmlSize={5}
-          custom
+        <select
           name="collaborators"
           id="collaborators"
           multiple={true}
@@ -47,9 +48,13 @@ export default class CollabSelect extends React.Component {
           onChange={this.selectHandler}
         >
           {this.state.usersList.map((user) => {
-            return <option value={user._id}>{user.username}</option>;
+            return (
+              // <Link to={`/users/${user._id`}>
+              <option value={user._id}> {user.username}</option>
+              // </Link>
+            )
           })}
-        </Form.Control>
+        </select>
       </>
     );
   }

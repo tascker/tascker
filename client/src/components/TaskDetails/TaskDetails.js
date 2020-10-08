@@ -5,7 +5,7 @@ import Logout from "../Logout/Logout";
 import Sidebar from "../Sidebar/Sidebar";
 import { Alert, Button, Container, Row, Col } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
-import Sidebar from "../Sidebar/Sidebar";
+
 
 export default class TaskDetails extends Component {
   state = {
@@ -136,11 +136,6 @@ export default class TaskDetails extends Component {
                 <Alert variant="secondary">
                   <Alert.Heading>Notes</Alert.Heading>
                   <p>{this.state.notes}</p>
-                  <hr />
-                  <p className="mb-0">
-                    Whenever you need to, be sure to use margin utilities to
-                    keep things nice and tidy.
-                  </p>
                 </Alert>
 
                 {this.state.collaborators.length > 0 && <h4>Collaborators</h4>}
