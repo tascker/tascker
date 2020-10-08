@@ -9,7 +9,7 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import Logout from "../Logout/Logout";
 
 import EditTask from "../EditTask/EditTask";
-import PinnedTask from "../PinnedTask/PinnedTask";
+
 
 export default class Tasks extends Component {
   state = {
@@ -88,7 +88,7 @@ export default class Tasks extends Component {
   };
 
   searchHandler = (event) => {
-    console.log("search", event.target.value);
+    // console.log("search", event.target.value);
     const searchInput = event.target.value;
 
     this.setState({
@@ -99,12 +99,10 @@ export default class Tasks extends Component {
   changePinned = (id) => {
     let newPinnedValue = !this.state.pinned;
     this.setState((state) => ({
-      pinned: newPinnedValue,
-    }));
+      pinned: newPinnedValue
+    }))
+    console.log("pin", newPinnedValue, id)
 
-    // const id = this.props.match.params.id;
-    // const id = this.props.match.params.id;
-    console.log("pin", newPinnedValue, id);
     axios
       .patch(`/api/tasks/${id}`, {
         pinned: newPinnedValue,
@@ -115,6 +113,8 @@ export default class Tasks extends Component {
           // project: response.data,
           status: response.data.pinned,
         });
+        // this.props.history.push("/dashboard");
+        // window.location.reload()
       })
       .catch((error) => {
         console.log(error);

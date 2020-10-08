@@ -67,7 +67,8 @@ export default class TaskDetails extends Component {
         title: this.state.title,
         notes: this.state.notes,
         deadline: this.state.deadline,
-        // collaborators: this.state.collaborators,
+        collaborators: this.state.collaborators,
+        status: this.state.status,
       })
       .then((response) => {
         this.setState({
@@ -100,6 +101,20 @@ export default class TaskDetails extends Component {
     this.getTaskFromDB();
   }
 
+  statusChange = (event) => {
+    // console.log(event)
+    this.setState({
+      status: event.name,
+    });
+  };
+
+  collabChange = (event) => {
+    console.log(event);
+    this.setState({
+      collaborators: event.value,
+    });
+  };
+
   render() {
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.task) return <p>Loading....</p>;
@@ -112,7 +127,7 @@ export default class TaskDetails extends Component {
               <Logout user={this.props.user} clearUser={this.props.setUser} />
             </Row>
             <Row>
-              <Col style={{ backgroundColor: "#F2F2F2", height: "90vh" }}>
+              <Col style={{ height: "90vh" }}>
                 <h2>
                   {this.state.title} <span>{this.state.status}</span>
                 </h2>
@@ -139,7 +154,7 @@ export default class TaskDetails extends Component {
                   <Trash />
                 </Button>
 
-                <Button onClick={this.toggleEditForm}>Edit Task</Button>
+                <Button onClick={this.deleteTask}>Delete</Button>
               </Col>
               <Col style={{ backgroundColor: "#F8F8F8", height: "90vh" }}>
                 {this.state.editForm && (
@@ -147,6 +162,8 @@ export default class TaskDetails extends Component {
                     {...this.state}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
+                    statusChange={this.statusChange}
+                    collabChange={this.collabChange}
                   />
                 )}
               </Col>
