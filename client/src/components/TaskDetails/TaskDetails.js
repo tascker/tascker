@@ -5,6 +5,7 @@ import Logout from "../Logout/Logout";
 import Sidebar from "../Sidebar/Sidebar";
 import { Alert, Button, Container, Row, Col } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
+import Sidebar from "../Sidebar/Sidebar";
 
 export default class TaskDetails extends Component {
   state = {
@@ -144,7 +145,6 @@ export default class TaskDetails extends Component {
 
                 {this.state.collaborators.length > 0 && <h4>Collaborators</h4>}
                 <ul>
-                  {" "}
                   {this.state.collaborators.map((collab) => (
                     <li> {collab.username} </li>
                   ))}
@@ -155,26 +155,19 @@ export default class TaskDetails extends Component {
                 </Button>
 
 
-//         <button onClick={this.deleteTask}>Delete</button>
-//         <button onClick={this.toggleEditForm}>Edit Task</button>
-//         {this.state.editForm && (
-//           <EditTask
-//             {...this.state}
-//             handleChange={this.handleChange}
-//             handleSubmit={this.handleSubmit}
-//             statusChange={this.statusChange}
-//             collabChange={this.collabChange}
-//           />
-//         )}
-//       </div>
+                <Button onClick={this.deleteTask}>Delete</Button>
                 <Button onClick={this.toggleEditForm}>Edit Task</Button>
+
               </Col>
               <Col style={{ backgroundColor: "#F8F8F8", height: "90vh" }}>
+
                 {this.state.editForm && (
                   <EditTask
                     {...this.state}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
+                    statusChange={this.statusChange}
+                    collabChange={this.collabChange}
                   />
                 )}
               </Col>
