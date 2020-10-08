@@ -9,7 +9,6 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import Logout from "../Logout/Logout";
 
 import EditTask from "../EditTask/EditTask";
-import PinnedTask from "../PinnedTask/PinnedTask";
 
 export default class Tasks extends Component {
   state = {
@@ -57,38 +56,12 @@ export default class Tasks extends Component {
       });
   };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const id = this.props.match.params.id;
-  //   axios
-  //     .put(`/api/tasks/${id}`, {
-  //       title: this.state.title,
-  //       notes: this.state.notes,
-  //       deadline: this.state.deadline,
-  //       status: this.state.status,
-  //       pinned: this.state.pinned,
-  //     })
-  //     .then((response) => {
-  //       this.setState({
-  //         project: response.data,
-  //         title: response.data.title,
-  //         notes: response.data.notes,
-  //         deadline: response.data.deadline,
-  //         status: this.state.status,
-  //         pinned: this.state.pinned,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   submitHandler = (event) => {
     event.preventDefault();
   };
 
   searchHandler = (event) => {
-    console.log("search", event.target.value);
+    // console.log("search", event.target.value);
     const searchInput = event.target.value;
 
     this.setState({
@@ -101,10 +74,8 @@ export default class Tasks extends Component {
     this.setState((state) => ({
       pinned: newPinnedValue,
     }));
-
-    // const id = this.props.match.params.id;
-    // const id = this.props.match.params.id;
     console.log("pin", newPinnedValue, id);
+
     axios
       .patch(`/api/tasks/${id}`, {
         pinned: newPinnedValue,
@@ -115,6 +86,8 @@ export default class Tasks extends Component {
           // project: response.data,
           status: response.data.pinned,
         });
+        //this.props.history.push("/dashboard");
+        // window.location.reload()
       })
       .catch((error) => {
         console.log(error);
@@ -123,25 +96,9 @@ export default class Tasks extends Component {
 
   render() {
     return (
-      <Container>
-        <Sidebar user={this.props.user} clearUser={this.props.setUser} />
+      <Container fluid>
         <Row>
-          <Col
-            xs={2}
-            md={2}
-            style={{
-              backgroundColor: "#f4f5f6",
-              height: "100vh",
-              display: "flex",
-              flexDirection: "column-reverse",
-              alignItems: "center",
-              paddingBottom: "5vh",
-            }}
-          >
-            <Link to="/create-task">
-              <Button>Add a new Task</Button>
-            </Link>
-          </Col>
+          <Sidebar user={this.props.user} clearUser={this.props.setUser} />
           <Col>
             <Row>
               <Logout user={this.props.user} clearUser={this.props.setUser} />
@@ -160,7 +117,7 @@ export default class Tasks extends Component {
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col style={{ backgrounColor: "#EDEDED" }}>
                 <h2>My Tasks</h2>
                 <TaskList
                   tasks={this.state.tasks}

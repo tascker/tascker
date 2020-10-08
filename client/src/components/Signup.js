@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { signup } from "../services/auth";
 import DeptSelect from "./DeptSelect";
 // import Alert from "@material-ui/lab/Alert";
+import Select from 'react-select'
 
 export default class Signup extends Component {
   state = {
@@ -18,8 +19,12 @@ export default class Signup extends Component {
       { name: "IT", label: "IT" },
       { name: "Software", label: "Software" },
     ],
+    name: "",
+    label: "",
     error: "",
+    //  selectOptions : [],    //added now
   };
+
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -71,9 +76,17 @@ export default class Signup extends Component {
     this.setState({
       department: query,
     });
+    console.log("in query", query)
   };
 
+  selectChange = (event) => {
+    console.log("event", event.value);
+    this.setQuery(event.value);
+  };
+
+
   render() {
+    console.log("in sign up", this.props.selectOption)
     return (
       <div className="login-form">
         <div className="login-container">
@@ -106,6 +119,7 @@ export default class Signup extends Component {
                 id="email"
               />
             </div>
+
 
             <div className="input-container">
               <label htmlFor="password"></label>
@@ -140,6 +154,7 @@ export default class Signup extends Component {
             <p class="account-message">
               Already have an account? <a href="/login">Login</a>
             </p>
+
           </form>
         </div>
         {this.state.message && <p className="alert">{this.state.message}</p>}
