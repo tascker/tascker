@@ -75,7 +75,7 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <>
+      <div className="auth">
         <h2>Signup</h2>
         <div className="authContainer login">
           <form onSubmit={this.handleSubmit}>
@@ -116,7 +116,7 @@ export default class Signup extends Component {
           </form>
         </div>
         {this.state.message && <p>{this.state.message}</p>}
-      </>
+      </div>
     );
   }
 }
