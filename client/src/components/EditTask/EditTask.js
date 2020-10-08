@@ -80,6 +80,7 @@ export default class EditTask extends Component {
             onChange={this.props.statusChange}
           />
 
+          <Form.Label htmlFor="status">Collaborators</Form.Label>
           <Select
             options={this.state.usersList}
             isMulti
