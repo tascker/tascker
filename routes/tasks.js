@@ -62,10 +62,10 @@ router.post("/", (req, res) => {
 
 // UPDATE TASK
 router.put("/:id", (req, res) => {
-  const { title, notes, deadline, status } = req.body;
+  const { title, notes, deadline, status, collaborators } = req.body;
   Task.findByIdAndUpdate(
     req.params.id,
-    { title, notes, deadline, status },
+    { title, notes, deadline, status, collaborators },
     { new: true }
   )
     .then((task) => {

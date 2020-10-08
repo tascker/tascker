@@ -94,9 +94,9 @@ export default class TaskDetails extends Component {
   };
 
   toggleEditForm = () => {
-    this.setState((state) => ({
-      editForm: !state.editForm,
-    }));
+    this.setState({
+      editForm: !this.state.editForm,
+    });
   };
 
   componentDidMount() {
@@ -111,13 +111,14 @@ export default class TaskDetails extends Component {
   };
 
   collabChange = (event) => {
-    console.log(event);
+    console.log(event[0].value, "event");
     this.setState({
-      collaborators: event.value,
+      collaborators: [...this.state.collaborators, event[0].value],
     });
   };
 
   render() {
+    console.log(this.state.collaborators)
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.task) return <p>Loading....</p>;
     return (
@@ -170,7 +171,7 @@ export default class TaskDetails extends Component {
                 <hr />
                 <ul>
                   {this.state.collaborators.map((collab) => (
-                    <li> {collab.username} </li>
+                    <li key={collab._id}> {collab.username} </li>
                   ))}
                 </ul>
 

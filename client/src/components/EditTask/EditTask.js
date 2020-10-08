@@ -92,7 +92,7 @@ componentDidMount() {
                     <Select
                         options={this.state.usersList}
                         isMulti
-                        onChange={this.props.collabChange}
+                        onChange={(e) => this.props.collabChange(e)}
                     />
       </Col>
       </Form.Row>
