@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { BookmarkStarFill } from "react-bootstrap-icons";
 
 export default function Tasklist(props) {
   const filtered = props.tasks.filter((task) => {
@@ -26,7 +25,7 @@ export default function Tasklist(props) {
               <span>
                 {task.status === "to-do" ? (
                   <span className="to-do">{task.status}</span>
-                ) : task.status === "on-going" ? (
+                ) : task.status === "on going" ? (
                   <span className="ongoing">{task.status}</span>
                 ) : (
                   <span className="done">{task.status}</span>
@@ -46,7 +45,7 @@ export default function Tasklist(props) {
                 variant="outline-info"
                 onClick={() => props.changePinned(task._id)}
               >
-                <BookmarkStarFill />
+                Pin
               </Button>
             </p>
           </div>
