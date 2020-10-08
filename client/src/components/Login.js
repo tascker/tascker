@@ -33,31 +33,40 @@ export default class Login extends Component {
   };
   render() {
     return (
-      <>
-        <h2>login</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-            id="username"
-          />
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            id="password"
-          />
-          {this.state.message && (
-            <alert variant="danger">{this.state.message}</alert>
-          )}
-          <button type="submit">Login</button>
-        </form>
-      </>
+      <div className="auth">
+        <div class="login-container">
+          <h2>login</h2>
+
+          <form onSubmit={this.handleSubmit} id="form-container">
+            <div class="input-container">
+              <label htmlFor="username">Username: </label>
+              <input
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                id="username"
+              />
+            </div>
+
+            <div class="input-container">
+              <label htmlFor="password">Password: </label>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                id="password"
+              />
+            </div>
+
+            <p class="account-message">
+              Not registered yet? <a href="/signup">Signup</a>
+            </p>
+          </form>
+        </div>
+        {this.state.message && <p>{this.state.message}</p>}
+      </div>
     );
   }
 }

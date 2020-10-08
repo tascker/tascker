@@ -18,14 +18,20 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
+    "grommet": "^2.15.0",
+    "grommet-icons": "^4.5.0",
+    "grommet-styles": "^0.2.0",
     "hbs": "^4.0.1",
     "mongoose": "^5.2.10",
     "morgan": "^1.9.0",
     "node-sass-middleware": "^0.11.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "polished": "^4.0.1",
+    "react-lottie": "^1.2.3",
     "react-router-dom": "^5.2.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "styled-components": "^5.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
