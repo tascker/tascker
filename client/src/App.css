@@ -88,6 +88,31 @@
   outline: none;
 }
 
+.btn-logout,
+.btn-add,
+.btn-outline {
+  /* font-family: "Space Mono", sans-serif; */
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 0.7em 1rem 0.7rem 1rem;
+  margin: 0.3rem;
+  border-radius: 3rem;
+  border: none;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.btn-add {
+  border: 2px solid #fff;
+  color: #fff;
+  background-color: transparent;
+}
+
+.btn-logout {
+  background-color: #3d128d;
+  color: #fff;
+}
+
 .btn-signup {
   border: none;
   color: #fff;
@@ -95,7 +120,8 @@
   transition: all 0.2s ease;
 }
 
-.btn-signup:hover {
+.btn-signup:hover,
+.btn-logout:hover {
   background-color: #94bdf2;
 }
 
@@ -113,6 +139,14 @@
   transition: all 0.2s ease;
 }
 
+
+.btn-outline {
+  border: 2px solid #3d128d;
+  color: #3d128d;
+  background-color: transparent;
+}
+
+/*
 .btn-signup {
   transition: all 0.2s ease;
   /* font-family: "Nunito", sans-serif; */
@@ -184,4 +218,39 @@
 
 #alert {
   color: red;
+}
+
+h2.dashboard-heading {
+  text-transform: lowercase;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.to-do,
+.ongoing,
+.done {
+  padding: 8px;
+  border-radius: 50px;
+  font-weight: 800;
+  color: #fff;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.to-do {
+  /* border: 2px solid #fd6fff; */
+  background-color: #fd6fff;
+}
+
+.ongoing {
+  background-color: #ffaa15;
+}
+
+.done {
+  background-color: #00c781;
+}
+
+.notes-box {
+  background-color: #f2f5f6;
+  height: 180px;
 }
