@@ -113,6 +113,19 @@
   color: #fff;
 }
 
+/* .btn-pin {
+  font-size: 0.7rem;
+  font-weight: 800;
+  border: 2px solid #81fced;
+  color: #81fced;
+  padding: 0.5em 0.7rem 0.5rem 0.7rem;
+  margin: 0.3rem;
+  border-radius: 3rem;
+  text-transform: uppercase;
+  outline: none;
+  background-color: transparent;
+} */
+
 .btn-signup {
   border: none;
   color: #fff;
@@ -233,7 +246,6 @@ h2.dashboard-heading {
   color: #fff;
   font-size: 0.8rem;
   opacity: 0.9;
-  outline: none;
 }
 
 .to-do {
@@ -252,4 +264,11 @@ h2.dashboard-heading {
 .notes-box {
   background-color: #f2f5f6;
   height: 180px;
+}
+
+.deadline {
+  /* border: 2px solid #3d128d; */
+  background-color: #f4f5f6;
+  border-radius: 7px;
+  padding: 1%;
 }

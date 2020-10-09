@@ -21,7 +21,7 @@ export default class Tasks extends Component {
     status: "",
     pinned: "",
     pinnedTasks: [],
-    collabTasks: []
+    collabTasks: [],
   };
 
   componentDidMount() {
@@ -47,11 +47,13 @@ export default class Tasks extends Component {
           (res) => res.owner === userId._id && res.pinned
         );
 
-
-        let collabTasksArray = []
+        let collabTasksArray = [];
         for (let i = 0; i < response.data.length; i++) {
-          if (response.data[i].collaborators.includes(userId._id) && !response.data[i].pinned)
-            collabTasksArray.push(response.data[i])
+          if (
+            response.data[i].collaborators.includes(userId._id) &&
+            !response.data[i].pinned
+          )
+            collabTasksArray.push(response.data[i]);
         }
 
         this.setState({
@@ -106,9 +108,12 @@ export default class Tasks extends Component {
 
   changePinned = (id, pinned) => {
     // let newPinnedValue = !this.state.pinned;
-    this.setState((state) => ({
-      pinned: pinned,
-    }), () => console.log(pinned, "newPinnedValue"));
+    this.setState(
+      (state) => ({
+        pinned: pinned,
+      }),
+      () => console.log(pinned, "newPinnedValue")
+    );
     console.log("pin", pinned, id);
 
     axios
@@ -176,9 +181,15 @@ export default class Tasks extends Component {
                     style={{
                       height: "30vh",
                       paddingTop: "15px",
+                      backgroundColor: "#f4f5f6",
+                      paddingTop: "15px",
+                      border: "1px solid #d0d0d0",
+                      borderRadius: "10px",
+                      padding: "3%",
+                      margin: "20px",
                     }}
                   >
-                    <h2 className="dashboard-heading">Pinned Task</h2>
+                    <h2 className="dashboard-heading">Pinned tasks</h2>
                     <TaskList
                       tasks={this.state.pinnedTasks}
                       search={this.state.search}
@@ -201,7 +212,6 @@ export default class Tasks extends Component {
                       {...this.props}
                       pinned={true}
                       changePinned={this.changePinned}
-
                     />
                   </Col>
                 </Row>

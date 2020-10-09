@@ -159,18 +159,25 @@ export default class TaskDetails extends Component {
                     )}
                   </span>
                 </h2>
-                <p>Deadline: {this.state.deadline}</p>
+                <p className="deadline">
+                  <strong>Deadline:</strong> {this.state.deadline}
+                </p>
 
                 <div variant="secondary">
                   <h2 className="dashboard-heading">Notes</h2>
-                  <hr />
+                  {/* <hr /> */}
                   <div className="notes-box">{this.state.notes}</div>
                 </div>
 
                 {this.state.collaborators.length > 0 && (
-                  <h2 className="dashboard-heading">Collaborators</h2>
+                  <h2
+                    className="dashboard-heading"
+                    style={{ paddingTop: "15px" }}
+                  >
+                    Collaborators
+                  </h2>
                 )}
-                <hr />
+                {/* <hr /> */}
                 <ul>
                   {this.state.collaborators.map((collab) => (
                     <li key={collab._id}>{collab.username} </li>
