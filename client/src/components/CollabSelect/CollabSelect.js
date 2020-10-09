@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Select from "react-select";
 
 export default class CollabSelect extends React.Component {
   state = {
@@ -52,7 +53,7 @@ export default class CollabSelect extends React.Component {
               // <Link to={`/users/${user._id`}>
               <option value={user._id}> {user.username}</option>
               // </Link>
-            )
+            );
           })}
         </select>
       </>
